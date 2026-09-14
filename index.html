@@ -1,1 +1,902 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111827">
+<title>Meu Controle</title>
 
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #f8fafc;
+  padding-bottom: 80px;
+}
+
+header {
+  background: #111827;
+  padding: 22px 18px;
+  text-align: center;
+  border-bottom: 1px solid #263244;
+}
+
+header h1 {
+  font-size: 25px;
+}
+
+header p {
+  color: #94a3b8;
+  margin-top: 5px;
+}
+
+.container {
+  padding: 16px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 12px 5px;
+  border: none;
+  border-radius: 10px;
+  background: #1e293b;
+  color: white;
+  font-weight: bold;
+}
+
+.tabs button.active {
+  background: #2563eb;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.card {
+  background: #1e293b;
+  border-radius: 15px;
+  padding: 17px;
+  margin-bottom: 13px;
+  border: 1px solid #293548;
+}
+
+.card h3 {
+  color: #cbd5e1;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.value {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.blue {
+  color: #60a5fa;
+}
+
+.green {
+  color: #4ade80;
+}
+
+.red {
+  color: #f87171;
+}
+
+.yellow {
+  color: #facc15;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  margin-top: 7px;
+  margin-bottom: 13px;
+  border-radius: 9px;
+  border: 1px solid #475569;
+  background: #0f172a;
+  color: white;
+  font-size: 16px;
+}
+
+label {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+button.primary {
+  width: 100%;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+button.danger {
+  width: 100%;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  background: #991b1b;
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.progress {
+  width: 100%;
+  height: 14px;
+  background: #0f172a;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #22c55e;
+  width: 0%;
+}
+
+.history-item {
+  background: #0f172a;
+  padding: 13px;
+  border-radius: 10px;
+  margin-top: 8px;
+  border-left: 4px solid #2563eb;
+}
+
+.history-item strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.small {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111827;
+  text-align: center;
+  padding: 12px;
+  color: #64748b;
+  font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>💰 Meu Controle</h1>
+  <p>Controle seu trabalho e seu dinheiro</p>
+</header>
+
+<div class="container">
+
+  <div class="tabs">
+    <button class="active" onclick="showTab('inicio', this)">Início</button>
+    <button onclick="showTab('trabalho', this)">Trabalho</button>
+    <button onclick="showTab('config', this)">Config.</button>
+  </div>
+
+  <!-- INÍCIO -->
+  <section id="inicio" class="section active">
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Faturamento do mês</h3>
+        <div id="faturamento" class="value blue">R$ 0,00</div>
+      </div>
+
+      <div class="card">
+        <h3>Despesas do mês</h3>
+        <div id="despesas" class="value red">R$ 0,00</div>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <h3>Valor livre estimado</h3>
+      <div id="livre" class="value green">R$ 0,00</div>
+    </div>
+
+    <div class="card">
+      <h3>Meta de economia</h3>
+
+      <div class="small">
+        Meta: <span id="metaTexto">R$ 50.000,00</span>
+      </div>
+
+      <div class="progress">
+        <div id="barraMeta" class="progress-bar"></div>
+      </div>
+
+      <div id="progressoMeta" class="value green">R$ 0,00</div>
+
+      <div class="small">
+        <span id="percentualMeta">0%</span> da meta alcançada
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Aporte mensal planejado</h3>
+      <div id="aporteTexto" class="value yellow">R$ 4.500,00</div>
+    </div>
+
+    <div class="card">
+      <h3>Projeção até R$ 1 milhão</h3>
+      <div id="projecao" class="value blue">Calculando...</div>
+      <div id="projecaoDetalhe" class="small"></div>
+    </div>
+
+    <div class="card">
+      <h3>Salário pessoal</h3>
+      <div id="salarioTexto" class="value">R$ 2.000,00</div>
+      <div class="small">
+        Valor reservado mensalmente para você.
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- TRABALHO -->
+  <section id="trabalho" class="section">
+
+    <div class="card">
+
+      <h2 style="margin-bottom:15px;">Registrar dia de trabalho</h2>
+
+      <label>Data</label>
+      <input type="date" id="data">
+
+      <label>Faturamento do dia</label>
+      <input type="number" id="ganho" step="0.01" placeholder="Ex.: 300">
+
+      <label>Gasolina</label>
+      <input type="number" id="gasolina" step="0.01" placeholder="Ex.: 50">
+
+      <label>KM rodados</label>
+      <input type="number" id="km" step="0.1" placeholder="Ex.: 180">
+
+      <label>Outros gastos</label>
+      <input type="number" id="outros" step="0.01" placeholder="Ex.: 20">
+
+      <button class="primary" onclick="salvarDia()">
+        💾 Salvar dia
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h2>Histórico</h2>
+
+      <div id="historico">
+        <p class="small" style="margin-top:10px;">
+          Nenhum dia registrado.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONFIGURAÇÕES -->
+  <section id="config" class="section">
+
+    <div class="card">
+
+      <h2 style="margin-bottom:15px;">
+        ⚙️ Configurações
+      </h2>
+
+      <label>Salário pessoal mensal</label>
+      <input type="number" id="cfgSalario">
+
+      <label>Aporte mensal</label>
+      <input type="number" id="cfgAporte">
+
+      <label>Meta financeira</label>
+      <input type="number" id="cfgMeta">
+
+      <label>Rendimento estimado mensal (%)</label>
+      <input type="number" id="cfgRendimento" step="0.01">
+
+      <hr style="border-color:#334155;margin:15px 0;">
+
+      <h3 style="margin-bottom:15px;">
+        Despesas fixas
+      </h3>
+
+      <label>Celular</label>
+      <input type="number" id="cfgCelular">
+
+      <label>MEI</label>
+      <input type="number" id="cfgMei">
+
+      <label>Moto + seguro</label>
+      <input type="number" id="cfgMoto">
+
+      <label>Casa</label>
+      <input type="number" id="cfgCasa">
+
+      <label>Gasolina média mensal</label>
+      <input type="number" id="cfgGasolina">
+
+      <button class="primary" onclick="salvarConfig()">
+        💾 Salvar configurações
+      </button>
+
+      <button class="danger" onclick="limparDados()">
+        🗑️ Apagar todos os dados
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  Meu Controle • Controle seu dinheiro, alcance seus objetivos.
+</footer>
+
+
+<script>
+
+let banco = JSON.parse(
+  localStorage.getItem("meuControle")
+) || {
+
+  config: {
+    salario: 2000,
+    aporte: 4500,
+    meta: 50000,
+    rendimento: 0.67,
+
+    celular: 80,
+    mei: 90,
+    moto: 1300,
+    casa: 300,
+    gasolina: 1500
+  },
+
+  dias: [],
+
+  economizado: 0
+};
+
+
+function dinheiro(valor) {
+
+  return Number(valor || 0).toLocaleString(
+    "pt-BR",
+    {
+      style: "currency",
+      currency: "BRL"
+    }
+  );
+
+}
+
+
+function salvarBanco() {
+
+  localStorage.setItem(
+    "meuControle",
+    JSON.stringify(banco)
+  );
+
+}
+
+
+function showTab(tab, botao) {
+
+  document.querySelectorAll(".section")
+    .forEach(s => s.classList.remove("active"));
+
+  document.getElementById(tab)
+    .classList.add("active");
+
+  document.querySelectorAll(".tabs button")
+    .forEach(b => b.classList.remove("active"));
+
+  botao.classList.add("active");
+
+  atualizar();
+
+}
+
+
+function salvarDia() {
+
+  const data =
+    document.getElementById("data").value;
+
+  const ganho =
+    Number(document.getElementById("ganho").value);
+
+  const gasolina =
+    Number(document.getElementById("gasolina").value);
+
+  const km =
+    Number(document.getElementById("km").value);
+
+  const outros =
+    Number(document.getElementById("outros").value);
+
+
+  if (!data || ganho <= 0) {
+
+    alert("Informe a data e o faturamento.");
+
+    return;
+
+  }
+
+
+  banco.dias.push({
+
+    id: Date.now(),
+
+    data,
+
+    ganho,
+
+    gasolina,
+
+    km,
+
+    outros
+
+  });
+
+
+  salvarBanco();
+
+
+  document.getElementById("ganho").value = "";
+  document.getElementById("gasolina").value = "";
+  document.getElementById("km").value = "";
+  document.getElementById("outros").value = "";
+
+
+  alert("Dia registrado com sucesso!");
+
+  atualizar();
+
+}
+
+
+function excluirDia(id) {
+
+  if (!confirm("Excluir este registro?")) return;
+
+  banco.dias =
+    banco.dias.filter(d => d.id !== id);
+
+  salvarBanco();
+
+  atualizar();
+
+}
+
+
+function salvarConfig() {
+
+  banco.config.salario =
+    Number(document.getElementById("cfgSalario").value);
+
+  banco.config.aporte =
+    Number(document.getElementById("cfgAporte").value);
+
+  banco.config.meta =
+    Number(document.getElementById("cfgMeta").value);
+
+  banco.config.rendimento =
+    Number(document.getElementById("cfgRendimento").value);
+
+  banco.config.celular =
+    Number(document.getElementById("cfgCelular").value);
+
+  banco.config.mei =
+    Number(document.getElementById("cfgMei").value);
+
+  banco.config.moto =
+    Number(document.getElementById("cfgMoto").value);
+
+  banco.config.casa =
+    Number(document.getElementById("cfgCasa").value);
+
+  banco.config.gasolina =
+    Number(document.getElementById("cfgGasolina").value);
+
+
+  salvarBanco();
+
+  alert("Configurações salvas!");
+
+  atualizar();
+
+}
+
+
+function carregarConfig() {
+
+  const c = banco.config;
+
+  document.getElementById("cfgSalario").value =
+    c.salario;
+
+  document.getElementById("cfgAporte").value =
+    c.aporte;
+
+  document.getElementById("cfgMeta").value =
+    c.meta;
+
+  document.getElementById("cfgRendimento").value =
+    c.rendimento;
+
+  document.getElementById("cfgCelular").value =
+    c.celular;
+
+  document.getElementById("cfgMei").value =
+    c.mei;
+
+  document.getElementById("cfgMoto").value =
+    c.moto;
+
+  document.getElementById("cfgCasa").value =
+    c.casa;
+
+  document.getElementById("cfgGasolina").value =
+    c.gasolina;
+
+}
+
+
+function atualizar() {
+
+  const agora = new Date();
+
+  const mesAtual =
+    agora.getMonth();
+
+  const anoAtual =
+    agora.getFullYear();
+
+
+  const diasMes =
+    banco.dias.filter(d => {
+
+      const data = new Date(d.data + "T12:00:00");
+
+      return (
+        data.getMonth() === mesAtual &&
+        data.getFullYear() === anoAtual
+      );
+
+    });
+
+
+  let faturamento = 0;
+
+  let gastosVariaveis = 0;
+
+
+  diasMes.forEach(d => {
+
+    faturamento += d.ganho;
+
+    gastosVariaveis +=
+      d.gasolina +
+      d.outros;
+
+  });
+
+
+  const c = banco.config;
+
+
+  const despesasFixas =
+    c.celular +
+    c.mei +
+    c.moto +
+    c.casa +
+    c.gasolina;
+
+
+  const despesas =
+    gastosVariaveis +
+    despesasFixas;
+
+
+  const livre =
+    faturamento - despesas;
+
+
+  document.getElementById("faturamento")
+    .innerText = dinheiro(faturamento);
+
+  document.getElementById("despesas")
+    .innerText = dinheiro(despesas);
+
+  document.getElementById("livre")
+    .innerText = dinheiro(livre);
+
+
+  document.getElementById("metaTexto")
+    .innerText = dinheiro(c.meta);
+
+  document.getElementById("aporteTexto")
+    .innerText = dinheiro(c.aporte);
+
+  document.getElementById("salarioTexto")
+    .innerText = dinheiro(c.salario);
+
+
+  const progresso =
+    banco.economizado;
+
+  let percentual =
+    c.meta > 0
+      ? (progresso / c.meta) * 100
+      : 0;
+
+
+  percentual =
+    Math.min(percentual, 100);
+
+
+  document.getElementById("barraMeta")
+    .style.width = percentual + "%";
+
+  document.getElementById("progressoMeta")
+    .innerText = dinheiro(progresso);
+
+  document.getElementById("percentualMeta")
+    .innerText =
+      percentual.toFixed(1) + "%";
+
+
+  calcularProjecao();
+
+  mostrarHistorico();
+
+}
+
+
+function calcularProjecao() {
+
+  const aporte =
+    banco.config.aporte;
+
+  const taxa =
+    banco.config.rendimento / 100;
+
+
+  if (aporte <= 0) {
+
+    document.getElementById("projecao")
+      .innerText = "Configure o aporte.";
+
+    return;
+
+  }
+
+
+  let patrimonio =
+    banco.economizado;
+
+  let meses = 0;
+
+
+  while (
+    patrimonio < 1000000 &&
+    meses < 1000
+  ) {
+
+    patrimonio =
+      patrimonio * (1 + taxa) +
+      aporte;
+
+    meses++;
+
+  }
+
+
+  const anos =
+    Math.floor(meses / 12);
+
+  const mesesRestantes =
+    meses % 12;
+
+
+  document.getElementById("projecao")
+    .innerText =
+      meses + " meses";
+
+
+  document.getElementById("projecaoDetalhe")
+    .innerText =
+      "Aproximadamente " +
+      anos +
+      " anos e " +
+      mesesRestantes +
+      " meses para atingir R$ 1 milhão.";
+
+}
+
+
+function mostrarHistorico() {
+
+  const div =
+    document.getElementById("historico");
+
+
+  if (banco.dias.length === 0) {
+
+    div.innerHTML =
+      '<p class="small">Nenhum dia registrado.</p>';
+
+    return;
+
+  }
+
+
+  const ordenados =
+    [...banco.dias]
+      .sort(
+        (a,b) =>
+          new Date(b.data) -
+          new Date(a.data)
+      );
+
+
+  div.innerHTML = "";
+
+
+  ordenados.forEach(d => {
+
+    const liquido =
+      d.ganho -
+      d.gasolina -
+      d.outros;
+
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "history-item";
+
+
+    item.innerHTML = `
+
+      <strong>
+        ${formatarData(d.data)}
+      </strong>
+
+      <div>
+        Faturamento:
+        <span class="green">
+          ${dinheiro(d.ganho)}
+        </span>
+      </div>
+
+      <div>
+        Gasolina:
+        ${dinheiro(d.gasolina)}
+      </div>
+
+      <div>
+        Outros:
+        ${dinheiro(d.outros)}
+      </div>
+
+      <div>
+        KM:
+        ${d.km || 0} km
+      </div>
+
+      <div style="margin-top:6px;">
+        Líquido:
+        <strong class="blue">
+          ${dinheiro(liquido)}
+        </strong>
+      </div>
+
+      <button
+        class="danger"
+        onclick="excluirDia(${d.id})">
+        Excluir
+      </button>
+
+    `;
+
+
+    div.appendChild(item);
+
+  });
+
+}
+
+
+function formatarData(data) {
+
+  const d =
+    new Date(data + "T12:00:00");
+
+  return d.toLocaleDateString("pt-BR");
+
+}
+
+
+function limparDados() {
+
+  const certeza =
+    confirm(
+      "ATENÇÃO: isso apagará todos os registros. Continuar?"
+    );
+
+  if (!certeza) return;
+
+
+  localStorage.removeItem(
+    "meuControle"
+  );
+
+  location.reload();
+
+}
+
+
+document.getElementById("data").value =
+  new Date().toISOString().split("T")[0];
+
+
+carregarConfig();
+
+atualizar();
+
+</script>
+
+</body>
+</html>
