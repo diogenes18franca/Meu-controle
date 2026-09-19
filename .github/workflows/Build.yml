@@ -1,50 +1,38 @@
 name: Gerar APK - Melhor Gestão
-
 on:
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Baixar código
         uses: actions/checkout@v4
-
       - name: Configurar Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-
       - name: Configurar Android SDK
-        run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
-          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
-          ls -la "$ANDROID_HOME"
-
-      - name: Instalar componentes Android
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses || true
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
             "platform-tools" \
             "platforms;android-35" \
             "build-tools;35.0.0"
-
       - name: Instalar Gradle
         run: |
           wget -q https://services.gradle.org/distributions/gradle-8.9-bin.zip
           unzip -q gradle-8.9-bin.zip -d "$HOME/gradle"
           echo "$HOME/gradle/gradle-8.9/bin" >> "$GITHUB_PATH"
-
       - name: Criar projeto Android
         run: |
           mkdir -p app/src/main/java/com/melhorgestao/app
           mkdir -p app/src/main/assets
           mkdir -p app/src/main/res/values
-
           cp index.html app/src/main/assets/index.html
-
+          # --------------------------------
+          # SETTINGS
+          # --------------------------------
           cat > settings.gradle <<'EOF'
           pluginManagement {
               repositories {
@@ -53,7 +41,6 @@ jobs:
                   gradlePluginPortal()
               }
           }
-
           dependencyResolutionManagement {
               repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
               repositories {
@@ -61,26 +48,27 @@ jobs:
                   mavenCentral()
               }
           }
-
           rootProject.name = "MelhorGestao"
           include(":app")
           EOF
-
+          # --------------------------------
+          # BUILD PRINCIPAL
+          # --------------------------------
           cat > build.gradle <<'EOF'
           plugins {
               id 'com.android.application' version '8.7.3' apply false
           }
           EOF
-
+          # --------------------------------
+          # BUILD DO APP
+          # --------------------------------
           cat > app/build.gradle <<'EOF'
           plugins {
               id 'com.android.application'
           }
-
           android {
               namespace 'com.melhorgestao.app'
               compileSdk 35
-
               defaultConfig {
                   applicationId 'com.melhorgestao.app'
                   minSdk 23
@@ -90,77 +78,492 @@ jobs:
               }
           }
           EOF
-
+          # --------------------------------
+          # ESTILO
+          # --------------------------------
           cat > app/src/main/res/values/styles.xml <<'EOF'
           <resources>
-              <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+              <style
+                  name="AppTheme"
+                  parent="android:style/Theme.Material.Light.NoActionBar">
                   <item name="android:fontFamily">sans</item>
                   <item name="android:colorAccent">#1E3A8A</item>
-                  <item name="android:navigationBarColor">#FFFFFF</item>
-                  <item name="android:statusBarColor">#FFFFFF</item>
-                  <item name="android:windowLightStatusBar">true</item>
+                  <item name="android:navigationBarColor">
+                      #FFFFFF
+                  </item>
+                  <item name="android:statusBarColor">
+                      #FFFFFF
+                  </item>
+                  <item name="android:windowLightStatusBar">
+                      true
+                  </item>
               </style>
           </resources>
           EOF
-
+          # --------------------------------
+          # ANDROID MANIFEST
+          # --------------------------------
           cat > app/src/main/AndroidManifest.xml <<'EOF'
-          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
+          <manifest
+              xmlns:android="http://schemas.android.com/apk/res/android">
+              <uses-permission
+                  android:name="android.permission.POST_NOTIFICATIONS" />
+              <uses-permission
+                  android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
               <application
                   android:theme="@style/AppTheme"
                   android:label="Melhor Gestão"
                   android:allowBackup="true"
                   android:supportsRtl="true">
-
                   <activity
                       android:name=".MainActivity"
                       android:screenOrientation="portrait"
                       android:exported="true">
-
                       <intent-filter>
-                          <action android:name="android.intent.action.MAIN" />
-                          <category android:name="android.intent.category.LAUNCHER" />
+                          <action
+                              android:name="android.intent.action.MAIN" />
+                          <category
+                              android:name="android.intent.category.LAUNCHER" />
                       </intent-filter>
-
                   </activity>
-
+                  <receiver
+                      android:name=".NotificationReceiver"
+                      android:exported="false" />
+                  <receiver
+                      android:name=".BootReceiver"
+                      android:enabled="true"
+                      android:exported="true">
+                      <intent-filter>
+                          <action
+                              android:name="android.intent.action.BOOT_COMPLETED" />
+                      </intent-filter>
+                  </receiver>
               </application>
-
           </manifest>
           EOF
-
+          # --------------------------------
+          # MAIN ACTIVITY
+          # --------------------------------
           cat > app/src/main/java/com/melhorgestao/app/MainActivity.java <<'EOF'
           package com.melhorgestao.app;
-
+          import android.Manifest;
           import android.app.Activity;
+          import android.app.AlarmManager;
+          import android.app.PendingIntent;
+          import android.content.Context;
+          import android.content.Intent;
+          import android.content.pm.PackageManager;
+          import android.os.Build;
           import android.os.Bundle;
+          import android.webkit.JavascriptInterface;
           import android.webkit.WebSettings;
           import android.webkit.WebView;
           import android.webkit.WebViewClient;
-
           public class MainActivity extends Activity {
-
+              private WebView webView;
               @Override
               protected void onCreate(Bundle savedInstanceState) {
                   super.onCreate(savedInstanceState);
-
-                  WebView webView = new WebView(this);
-
+                  webView = new WebView(this);
                   WebSettings settings = webView.getSettings();
                   settings.setJavaScriptEnabled(true);
                   settings.setDomStorageEnabled(true);
-
+                  settings.setDatabaseEnabled(true);
                   webView.setWebViewClient(new WebViewClient());
-                  webView.loadUrl("file:///android_asset/index.html");
-
+                  webView.addJavascriptInterface(
+                      new AndroidNotificacao(this),
+                      "AndroidNotificacao"
+                  );
+                  webView.loadUrl(
+                      "file:///android_asset/index.html"
+                  );
                   setContentView(webView);
+                  criarCanalNotificacao();
+                  solicitarPermissaoNotificacao();
+                  agendarNotificacaoDiaria();
+              }
+              private void criarCanalNotificacao() {
+                  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                      android.app.NotificationChannel channel =
+                          new android.app.NotificationChannel(
+                              "melhor_gestao",
+                              "Melhor Gestão",
+                              android.app.NotificationManager.IMPORTANCE_DEFAULT
+                          );
+                      channel.setDescription(
+                          "Notificações financeiras do Melhor Gestão"
+                      );
+                      android.app.NotificationManager manager =
+                          getSystemService(
+                              android.app.NotificationManager.class
+                          );
+                      if (manager != null) {
+                          manager.createNotificationChannel(channel);
+                      }
+                  }
+              }
+              private void solicitarPermissaoNotificacao() {
+                  if (Build.VERSION.SDK_INT >=
+                      Build.VERSION_CODES.TIRAMISU) {
+                      if (checkSelfPermission(
+                          Manifest.permission.POST_NOTIFICATIONS
+                      ) != PackageManager.PERMISSION_GRANTED) {
+                          requestPermissions(
+                              new String[]{
+                                  Manifest.permission.POST_NOTIFICATIONS
+                              },
+                              1001
+                          );
+                      }
+                  }
+              }
+              private void agendarNotificacaoDiaria() {
+                  AlarmManager alarmManager =
+                      (AlarmManager) getSystemService(
+                          Context.ALARM_SERVICE
+                      );
+                  Intent intent =
+                      new Intent(this, NotificationReceiver.class);
+                  PendingIntent pendingIntent =
+                      PendingIntent.getBroadcast(
+                          this,
+                          100,
+                          intent,
+                          PendingIntent.FLAG_UPDATE_CURRENT |
+                          PendingIntent.FLAG_IMMUTABLE
+                      );
+                  java.util.Calendar calendario =
+                      java.util.Calendar.getInstance();
+                  calendario.set(
+                      java.util.Calendar.HOUR_OF_DAY,
+                      20
+                  );
+                  calendario.set(
+                      java.util.Calendar.MINUTE,
+                      0
+                  );
+                  calendario.set(
+                      java.util.Calendar.SECOND,
+                      0
+                  );
+                  if (calendario.getTimeInMillis() <=
+                      System.currentTimeMillis()) {
+                      calendario.add(
+                          java.util.Calendar.DAY_OF_YEAR,
+                          1
+                      );
+                  }
+                  if (alarmManager != null) {
+                      alarmManager.setInexactRepeating(
+                          AlarmManager.RTC_WAKEUP,
+                          calendario.getTimeInMillis(),
+                          AlarmManager.INTERVAL_DAY,
+                          pendingIntent
+                      );
+                  }
+              }
+              public class AndroidNotificacao {
+                  private Context context;
+                  AndroidNotificacao(Context context) {
+                      this.context = context;
+                  }
+                  @JavascriptInterface
+                  public void atualizarDados(String dados) {
+                      getSharedPreferences(
+                          "MelhorGestao",
+                          MODE_PRIVATE
+                      )
+                      .edit()
+                      .putString("dados", dados)
+                      .apply();
+                  }
+                  @JavascriptInterface
+                  public void ativarNotificacoes() {
+                      agendarNotificacaoDiaria();
+                  }
+                  @JavascriptInterface
+                  public void desativarNotificacoes() {
+                      AlarmManager alarmManager =
+                          (AlarmManager) getSystemService(
+                              Context.ALARM_SERVICE
+                          );
+                      Intent intent =
+                          new Intent(
+                              MainActivity.this,
+                              NotificationReceiver.class
+                          );
+                      PendingIntent pendingIntent =
+                          PendingIntent.getBroadcast(
+                              MainActivity.this,
+                              100,
+                              intent,
+                              PendingIntent.FLAG_UPDATE_CURRENT |
+                              PendingIntent.FLAG_IMMUTABLE
+                          );
+                      if (alarmManager != null) {
+                          alarmManager.cancel(pendingIntent);
+                      }
+                  }
+              }
+              @Override
+              public void onBackPressed() {
+                  if (webView != null &&
+                      webView.canGoBack()) {
+                      webView.goBack();
+                  } else {
+                      super.onBackPressed();
+                  }
               }
           }
           EOF
-
+          # --------------------------------
+          # RECEIVER DAS NOTIFICAÇÕES
+          # --------------------------------
+          cat > app/src/main/java/com/melhorgestao/app/NotificationReceiver.java <<'EOF'
+          package com.melhorgestao.app;
+          import android.Manifest;
+          import android.app.NotificationManager;
+          import android.app.PendingIntent;
+          import android.content.BroadcastReceiver;
+          import android.content.Context;
+          import android.content.Intent;
+          import android.content.pm.PackageManager;
+          import android.os.Build;
+          import androidx.core.app.NotificationCompat;
+          import org.json.JSONArray;
+          import org.json.JSONObject;
+          public class NotificationReceiver extends BroadcastReceiver {
+              @Override
+              public void onReceive(
+                  Context context,
+                  Intent intent
+              ) {
+                  if (Build.VERSION.SDK_INT >=
+                      Build.VERSION_CODES.TIRAMISU) {
+                      if (context.checkSelfPermission(
+                          Manifest.permission.POST_NOTIFICATIONS
+                      ) != PackageManager.PERMISSION_GRANTED) {
+                          return;
+                      }
+                  }
+                  String titulo = "💼 Melhor Gestão";
+                  String mensagem =
+                      "Confira seu controle financeiro de hoje.";
+                  String dados =
+                      context.getSharedPreferences(
+                          "MelhorGestao",
+                          Context.MODE_PRIVATE
+                      )
+                      .getString("dados", "");
+                  try {
+                      if (dados != null &&
+                          !dados.isEmpty()) {
+                          JSONObject banco =
+                              new JSONObject(dados);
+                          int avisos = 0;
+                          JSONArray contas =
+                              banco.optJSONArray("contas");
+                          if (contas != null) {
+                              for (
+                                  int i = 0;
+                                  i < contas.length();
+                                  i++
+                              ) {
+                                  JSONObject conta =
+                                      contas.optJSONObject(i);
+                                  if (conta == null) {
+                                      continue;
+                                  }
+                                  boolean pago =
+                                      conta.optBoolean(
+                                          "pago",
+                                          false
+                                      );
+                                  if (!pago) {
+                                      avisos++;
+                                  }
+                              }
+                          }
+                          JSONArray recebimentos =
+                              banco.optJSONArray(
+                                  "recebimentos"
+                              );
+                          int receber = 0;
+                          if (recebimentos != null) {
+                              for (
+                                  int i = 0;
+                                  i < recebimentos.length();
+                                  i++
+                              ) {
+                                  JSONObject recebimento =
+                                      recebimentos.optJSONObject(i);
+                                  if (recebimento == null) {
+                                      continue;
+                                  }
+                                  boolean recebido =
+                                      recebimento.optBoolean(
+                                          "recebido",
+                                          false
+                                      );
+                                  if (!recebido) {
+                                      receber++;
+                                  }
+                              }
+                          }
+                          if (avisos > 0 &&
+                              receber > 0) {
+                              mensagem =
+                                  "Você tem " +
+                                  avisos +
+                                  " conta(s) pendente(s) e " +
+                                  receber +
+                                  " valor(es) a receber.";
+                          } else if (avisos > 0) {
+                              mensagem =
+                                  "Você tem " +
+                                  avisos +
+                                  " conta(s) pendente(s).";
+                          } else if (receber > 0) {
+                              mensagem =
+                                  "Você tem " +
+                                  receber +
+                                  " valor(es) a receber.";
+                          } else {
+                              mensagem =
+                                  "Seu controle financeiro está em dia.";
+                          }
+                      }
+                  } catch (Exception ignored) {
+                  }
+                  Intent abrirApp =
+                      new Intent(
+                          context,
+                          MainActivity.class
+                      );
+                  abrirApp.setFlags(
+                      Intent.FLAG_ACTIVITY_NEW_TASK |
+                      Intent.FLAG_ACTIVITY_CLEAR_TOP
+                  );
+                  PendingIntent pendingIntent =
+                      PendingIntent.getActivity(
+                          context,
+                          200,
+                          abrirApp,
+                          PendingIntent.FLAG_UPDATE_CURRENT |
+                          PendingIntent.FLAG_IMMUTABLE
+                      );
+                  NotificationCompat.Builder builder =
+                      new NotificationCompat.Builder(
+                          context,
+                          "melhor_gestao"
+                      )
+                      .setSmallIcon(
+                          android.R.drawable.ic_dialog_info
+                      )
+                      .setContentTitle(titulo)
+                      .setContentText(mensagem)
+                      .setStyle(
+                          new NotificationCompat.BigTextStyle()
+                              .bigText(mensagem)
+                      )
+                      .setPriority(
+                          NotificationCompat.PRIORITY_DEFAULT
+                      )
+                      .setAutoCancel(true)
+                      .setContentIntent(pendingIntent);
+                  NotificationManager manager =
+                      (NotificationManager)
+                      context.getSystemService(
+                          Context.NOTIFICATION_SERVICE
+                      );
+                  if (manager != null) {
+                      manager.notify(
+                          1000,
+                          builder.build()
+                      );
+                  }
+              }
+          }
+          EOF
+          # --------------------------------
+          # RECEIVER APÓS REINICIAR CELULAR
+          # --------------------------------
+          cat > app/src/main/java/com/melhorgestao/app/BootReceiver.java <<'EOF'
+          package com.melhorgestao.app;
+          import android.app.AlarmManager;
+          import android.app.PendingIntent;
+          import android.content.BroadcastReceiver;
+          import android.content.Context;
+          import android.content.Intent;
+          import java.util.Calendar;
+          public class BootReceiver extends BroadcastReceiver {
+              @Override
+              public void onReceive(
+                  Context context,
+                  Intent intent
+              ) {
+                  if (Intent.ACTION_BOOT_COMPLETED.equals(
+                      intent.getAction()
+                  )) {
+                      AlarmManager alarmManager =
+                          (AlarmManager)
+                          context.getSystemService(
+                              Context.ALARM_SERVICE
+                          );
+                      Intent notificationIntent =
+                          new Intent(
+                              context,
+                              NotificationReceiver.class
+                          );
+                      PendingIntent pendingIntent =
+                          PendingIntent.getBroadcast(
+                              context,
+                              100,
+                              notificationIntent,
+                              PendingIntent.FLAG_UPDATE_CURRENT |
+                              PendingIntent.FLAG_IMMUTABLE
+                          );
+                      Calendar calendario =
+                          Calendar.getInstance();
+                      calendario.set(
+                          Calendar.HOUR_OF_DAY,
+                          20
+                      );
+                      calendario.set(
+                          Calendar.MINUTE,
+                          0
+                      );
+                      calendario.set(
+                          Calendar.SECOND,
+                          0
+                      );
+                      if (calendario.getTimeInMillis() <=
+                          System.currentTimeMillis()) {
+                          calendario.add(
+                              Calendar.DAY_OF_YEAR,
+                              1
+                          );
+                      }
+                      if (alarmManager != null) {
+                          alarmManager.setInexactRepeating(
+                              AlarmManager.RTC_WAKEUP,
+                              calendario.getTimeInMillis(),
+                              AlarmManager.INTERVAL_DAY,
+                              pendingIntent
+                          );
+                      }
+                  }
+              }
+          }
+          EOF
+      # --------------------------------
+      # GERAR APK
+      # --------------------------------
       - name: Gerar APK
         run: gradle assembleDebug
-
+      # --------------------------------
+      # DISPONIBILIZAR APK
+      # --------------------------------
       - name: Disponibilizar APK
         uses: actions/upload-artifact@v4
         with:
