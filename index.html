@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0055A4">
 <title>Melhor Gestão</title>
-
 <style>
 *{
   box-sizing:border-box;
@@ -13,13 +12,11 @@
   padding:0;
   font-family:Arial,sans-serif;
 }
-
 body{
   background:#0b1220;
   color:#f8fafc;
   padding-bottom:85px;
 }
-
 header{
   background:#111827;
   padding:20px 18px 18px;
@@ -27,7 +24,6 @@ header{
   border-bottom:1px solid #263244;
   position:relative;
 }
-
 .tricolor{
   position:absolute;
   top:0;
@@ -41,30 +37,25 @@ header{
     #EF4135 66.66% 100%
   );
 }
-
 header h1{
   font-size:25px;
   margin-top:4px;
 }
-
 header p{
   color:#94a3b8;
   margin-top:5px;
 }
-
 .container{
   padding:16px;
   max-width:650px;
   margin:auto;
 }
-
 .tabs{
   display:flex;
   gap:6px;
   margin-bottom:18px;
   overflow-x:auto;
 }
-
 .tabs button{
   flex:1;
   min-width:82px;
@@ -75,19 +66,15 @@ header p{
   color:white;
   font-weight:bold;
 }
-
 .tabs button.active{
   background:#0055A4;
 }
-
 .section{
   display:none;
 }
-
 .section.active{
   display:block;
 }
-
 .card{
   background:#1e293b;
   border-radius:15px;
@@ -95,39 +82,32 @@ header p{
   margin-bottom:13px;
   border:1px solid #293548;
 }
-
 .card h2{
   font-size:19px;
 }
-
 .card h3{
   color:#cbd5e1;
   font-size:14px;
   margin-bottom:8px;
 }
-
 .value{
   font-size:24px;
   font-weight:bold;
 }
-
 .blue{color:#60a5fa}
 .green{color:#4ade80}
 .red{color:#f87171}
 .yellow{color:#facc15}
-
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
 }
-
 .grid3{
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
   gap:8px;
 }
-
 input,
 select{
   width:100%;
@@ -140,12 +120,10 @@ select{
   color:white;
   font-size:16px;
 }
-
 label{
   color:#cbd5e1;
   font-size:14px;
 }
-
 button.primary{
   width:100%;
   border:none;
@@ -157,7 +135,6 @@ button.primary{
   font-weight:bold;
   margin-top:5px;
 }
-
 button.secondary{
   width:100%;
   border:none;
@@ -168,7 +145,6 @@ button.secondary{
   font-weight:bold;
   margin-top:7px;
 }
-
 button.danger{
   width:100%;
   border:none;
@@ -179,12 +155,10 @@ button.danger{
   font-weight:bold;
   margin-top:10px;
 }
-
 .small{
   color:#94a3b8;
   font-size:13px;
 }
-
 .progress{
   width:100%;
   height:14px;
@@ -193,13 +167,11 @@ button.danger{
   overflow:hidden;
   margin:12px 0;
 }
-
 .progress-bar{
   height:100%;
   background:#22c55e;
   width:0%;
 }
-
 .history-item{
   background:#0f172a;
   padding:13px;
@@ -207,12 +179,10 @@ button.danger{
   margin-top:8px;
   border-left:4px solid #0055A4;
 }
-
 .history-item strong{
   display:block;
   margin-bottom:5px;
 }
-
 .expense-row{
   display:grid;
   grid-template-columns:1fr 100px 42px;
@@ -220,11 +190,9 @@ button.danger{
   align-items:center;
   margin-bottom:8px;
 }
-
 .expense-row input{
   margin:0;
 }
-
 .remove-btn{
   border:none;
   background:#991b1b;
@@ -233,21 +201,18 @@ button.danger{
   height:43px;
   font-size:18px;
 }
-
 .total-box{
   background:#0f172a;
   padding:12px;
   border-radius:10px;
   margin:10px 0;
 }
-
 .calendar-header{
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin-bottom:12px;
 }
-
 .calendar-header button{
   border:none;
   background:#334155;
@@ -257,32 +222,27 @@ button.danger{
   border-radius:9px;
   font-size:20px;
 }
-
 .calendar-title{
   font-weight:bold;
   text-transform:capitalize;
 }
-
 .calendar-week{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:4px;
   margin-bottom:4px;
 }
-
 .calendar-week div{
   text-align:center;
   font-size:11px;
   color:#94a3b8;
   padding:5px 0;
 }
-
 .calendar-grid{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:4px;
 }
-
 .day{
   min-height:55px;
   background:#0f172a;
@@ -291,48 +251,38 @@ button.danger{
   cursor:pointer;
   border:1px solid transparent;
 }
-
 .day:hover{
   border-color:#0055A4;
 }
-
 .day.empty{
   background:transparent;
   cursor:default;
 }
-
 .day.today{
   border-color:#60a5fa;
 }
-
 .day.selected{
   background:#12365c;
 }
-
 .day-number{
   font-size:13px;
 }
-
 .dots{
   display:flex;
   gap:3px;
   margin-top:7px;
 }
-
 .dot{
   width:7px;
   height:7px;
   border-radius:50%;
 }
-
 .dot.red{
   background:#f87171;
 }
-
 .dot.green{
   background:#4ade80;
 }
-
 .planning-item{
   background:#0f172a;
   padding:12px;
@@ -340,21 +290,17 @@ button.danger{
   margin-top:8px;
   border-left:4px solid;
 }
-
 .planning-item.bill{
   border-color:#f87171;
 }
-
 .planning-item.receive{
   border-color:#4ade80;
 }
-
 .planning-actions{
   display:flex;
   gap:7px;
   margin-top:9px;
 }
-
 .planning-actions button{
   flex:1;
   border:none;
@@ -363,7 +309,6 @@ button.danger{
   color:white;
   background:#334155;
 }
-
 .chat-box{
   background:#0f172a;
   border-radius:12px;
@@ -373,31 +318,26 @@ button.danger{
   overflow-y:auto;
   margin-bottom:10px;
 }
-
 .chat-message{
   padding:10px;
   border-radius:10px;
   margin-bottom:8px;
   line-height:1.4;
 }
-
 .chat-user{
   background:#12365c;
   margin-left:25px;
 }
-
 .chat-bot{
   background:#263244;
   margin-right:15px;
 }
-
 .quick-buttons{
   display:flex;
   flex-wrap:wrap;
   gap:6px;
   margin-bottom:10px;
 }
-
 .quick-buttons button{
   background:#334155;
   color:white;
@@ -405,7 +345,43 @@ button.danger{
   border-radius:8px;
   padding:8px 10px;
 }
-
+/* SALDO */
+.balance-total{
+  background:#0f172a;
+  border-radius:12px;
+  padding:15px;
+  margin-top:5px;
+  text-align:center;
+}
+.balance-total .value{
+  font-size:29px;
+}
+/* NOTIFICAÇÕES */
+.notification-option{
+  background:#0f172a;
+  border-radius:11px;
+  padding:13px;
+  margin-top:9px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.notification-option input{
+  width:auto;
+  margin:0;
+  transform:scale(1.2);
+}
+.notification-status{
+  background:#12365c;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:12px;
+  color:#bfdbfe;
+}
+.notification-off{
+  background:#3f1d1d;
+  color:#fecaca;
+}
 footer{
   position:fixed;
   bottom:0;
@@ -418,74 +394,97 @@ footer{
   font-size:12px;
   border-top:1px solid #263244;
 }
-
 hr{
   border-color:#334155;
   margin:15px 0;
 }
-
 @media(max-width:420px){
   .grid3{
     grid-template-columns:1fr;
   }
-
   .expense-row{
     grid-template-columns:1fr 90px 40px;
   }
 }
 </style>
 </head>
-
 <body>
-
 <header>
   <div class="tricolor"></div>
   <h1>💼 Melhor Gestão</h1>
   <p>Controle financeiro inteligente.</p>
 </header>
-
 <div class="container">
-
 <div class="tabs">
   <button class="active" onclick="showTab('inicio',this)">Início</button>
   <button onclick="showTab('trabalho',this)">Trabalho</button>
   <button onclick="showTab('calendario',this)">📅 Agenda</button>
+  <button onclick="showTab('notificacoes',this)">🔔 Avisos</button>
   <button onclick="showTab('assistente',this)">🤖 IA</button>
   <button onclick="showTab('config',this)">Config.</button>
 </div>
-
 <!-- INÍCIO -->
-
 <section id="inicio" class="section active">
-
 <div class="grid">
-
 <div class="card">
 <h3>Faturamento do mês</h3>
 <div id="faturamento" class="value blue">R$ 0,00</div>
 </div>
-
 <div class="card">
 <h3>Gastos registrados</h3>
 <div id="despesas" class="value red">R$ 0,00</div>
 </div>
-
 </div>
-
 <div class="grid">
-
 <div class="card">
 <h3>💰 A receber</h3>
 <div id="aReceber" class="value green">R$ 0,00</div>
 </div>
-
 <div class="card">
 <h3>💸 A pagar</h3>
 <div id="aPagar" class="value red">R$ 0,00</div>
 </div>
+</div>
+<!-- SALDO DISPONÍVEL -->
+<div class="card">
+<h2 style="margin-bottom:15px;">
+💰 Saldo disponível
+</h2>
 
+🏦 Saldo em conta
+<input
+type=“number”
+id=“saldoConta”
+step=“0.01”
+placeholder=“Ex.: 1000”
+oninput=“calcularSaldoDisponivel()”
+
+💵 Dinheiro em mãos
+<input
+type=“number”
+id=“dinheiroMaos”
+step=“0.01”
+placeholder=“Ex.: 300”
+oninput=“calcularSaldoDisponivel()”
+
+<div class="balance-total">
+<div class="small">
+TOTAL DISPONÍVEL
+</div>
+<div
+  id="totalDisponivel"
+  class="value green"
+>
+R$ 0,00
+</div>
 </div>
 
+<button
+class=“primary”
+onclick=“salvarSaldo()”
+
+💾 Salvar saldo
+</div>
 <div class="card">
 <h3>Saldo previsto</h3>
 <div id="saldoPrevisto" class="value blue">R$ 0,00</div>
@@ -493,7 +492,6 @@ hr{
 Considera o faturamento registrado + valores a receber - valores a pagar.
 </div>
 </div>
-
 <div class="card">
 <h3>Valor livre estimado</h3>
 <div id="livre" class="value green">R$ 0,00</div>
@@ -501,36 +499,28 @@ Considera o faturamento registrado + valores a receber - valores a pagar.
 Depois das despesas fixas configuradas.
 </div>
 </div>
-
 <div class="card">
 <h3>Meta de economia</h3>
-
 <div class="small">
 Meta: <span id="metaTexto">R$ 50.000,00</span>
 </div>
-
 <div class="progress">
 <div id="barraMeta" class="progress-bar"></div>
 </div>
-
 <div id="progressoMeta" class="value green">R$ 0,00</div>
-
 <div class="small">
 <span id="percentualMeta">0%</span> da meta alcançada
 </div>
 </div>
-
 <div class="card">
 <h3>Aporte mensal planejado</h3>
 <div id="aporteTexto" class="value yellow">R$ 4.500,00</div>
 </div>
-
 <div class="card">
 <h3>Projeção até R$ 1 milhão</h3>
 <div id="projecao" class="value blue">Calculando...</div>
 <div id="projecaoDetalhe" class="small"></div>
 </div>
-
 <div class="card">
 <h3>Salário pessoal</h3>
 <div id="salarioTexto" class="value">R$ 2.000,00</div>
@@ -538,72 +528,47 @@ Meta: <span id="metaTexto">R$ 50.000,00</span>
 Valor reservado mensalmente para você.
 </div>
 </div>
-
 <div class="card">
 <h3>📌 Próximos compromissos</h3>
 <div id="resumoAgenda"></div>
 </div>
-
 </section>
-
 <!-- TRABALHO -->
-
 <section id="trabalho" class="section">
-
 <div class="card">
-
 <h2 style="margin-bottom:15px;">
 Registrar dia de trabalho
 </h2>
 
-<label>Data</label>
-<input type="date" id="data">
-
-<label>Faturamento do dia</label>
-<input type="number" id="ganho" step="0.01" placeholder="Ex.: 300">
-
-<label>Gasolina</label>
-<input type="number" id="gasolina" step="0.01" placeholder="Ex.: 50">
-
-<label>KM rodados</label>
-<input type="number" id="km" step="0.1" placeholder="Ex.: 180">
-
+Data
+Faturamento do dia
+Gasolina
+KM rodados
 <hr>
-
 <h3>Gastos do dia</h3>
 
-<label>🍔 Lanche</label>
-<input type="number" id="lanche" step="0.01" placeholder="Ex.: 20">
-
-<label>🏍️ Despesas da moto</label>
-<input type="number" id="motoDia" step="0.01" placeholder="Ex.: 15">
-
-<label>Outros gastos</label>
+🍔 Lanche
+🏍️ Despesas da moto
+Outros gastos
 
 <div id="gastosPersonalizados"></div>
-
 <button class="secondary" onclick="adicionarGasto()">
 ＋ Adicionar outro gasto
 </button>
-
 <div class="total-box">
 <div>
 Total de gastos:
 <strong id="totalGastosDia" class="red">R$ 0,00</strong>
 </div>
-
 <div style="margin-top:7px;">
 Líquido do dia:
 <strong id="liquidoDia" class="green">R$ 0,00</strong>
 </div>
 </div>
-
 <button class="primary" onclick="salvarDia()">
 💾 Salvar dia
 </button>
-
 </div>
-
 <div class="card">
 <h2>Histórico</h2>
 <div id="historico">
@@ -612,27 +577,21 @@ Nenhum dia registrado.
 </p>
 </div>
 </div>
-
 </section>
-
 <!-- CALENDÁRIO -->
-
 <section id="calendario" class="section">
-
 <div class="card">
-
 <div class="calendar-header">
 
-<button onclick="mudarMes(-1)">‹</button>
+‹
 
 <div id="tituloCalendario" class="calendar-title">
 Mês
 </div>
 
-<button onclick="mudarMes(1)">›</button>
+›
 
 </div>
-
 <div class="calendar-week">
 <div>SEG</div>
 <div>TER</div>
@@ -642,45 +601,26 @@ Mês
 <div>SÁB</div>
 <div>DOM</div>
 </div>
-
 <div id="calendarioGrid" class="calendar-grid"></div>
-
 <div class="small" style="margin-top:10px;">
 🔴 Conta a pagar &nbsp;&nbsp; 🟢 Dinheiro a receber
 </div>
-
 </div>
-
 <div class="card">
-
 <h2 style="margin-bottom:15px;">
 Adicionar planejamento
 </h2>
 
-<label>Tipo</label>
+Tipo
 
 <select id="tipoPlanejamento">
 <option value="conta">💸 Conta a pagar</option>
 <option value="receber">💰 Dinheiro a receber</option>
 </select>
 
-<label>Nome</label>
-<input
-id="nomePlanejamento"
-placeholder="Ex.: Moto + seguro / João"
-/>
-
-<label>Valor</label>
-<input
-type="number"
-id="valorPlanejamento"
-step="0.01"
-placeholder="Ex.: 200"
-/>
-
-<label>Data</label>
-<input type="date" id="dataPlanejamento">
-
+Nome
+Valor
+Data
 <label style="display:flex;align-items:center;gap:8px;margin:5px 0 12px;">
 <input
 type="checkbox"
@@ -689,97 +629,169 @@ style="width:auto;margin:0;"
 >
 Repetir todo mês por 12 meses
 </label>
-
 <button class="primary" onclick="salvarPlanejamento()">
 ＋ Adicionar
 </button>
-
 </div>
-
 <div class="card">
-
 <h2 id="tituloEventosData">
 Eventos do dia
 </h2>
-
 <div id="eventosData"></div>
-
 </div>
-
 <div class="card">
-
 <h2 style="margin-bottom:10px;">
 💸 Contas a pagar
 </h2>
-
 <div id="listaContas"></div>
-
 </div>
-
 <div class="card">
-
 <h2 style="margin-bottom:10px;">
 💰 Dinheiro a receber
 </h2>
-
 <div id="listaRecebimentos"></div>
-
+</div>
+</section>
+<!-- NOTIFICAÇÕES -->
+<section id="notificacoes" class="section">
+<div class="card">
+<h2 style="margin-bottom:8px;">
+🔔 Central de notificações
+</h2>
+<div class="small" style="margin-bottom:15px;">
+Configure os avisos financeiros que você deseja receber.
+</div>
+<div
+  id="statusNotificacoes"
+  class="notification-status"
+>
+Notificações desativadas.
 </div>
 
+<label
+class=“notification-option”
+
+<input
+type=“checkbox”
+id=“notifAtiva”
+
+<span>
+<strong>🔔 Ativar notificações</strong><br>
+<span class="small">
+Ativa os avisos financeiros.
+</span>
+</span>
+</label>
+<hr>
+
+⏰ Horário diário
+
+<input
+type=“time”
+id=“notifHorario”
+value=“09:00”
+
+<div class="notification-option">
+<input
+  type="checkbox"
+  id="notifSaldo"
+>
+<span>
+<strong>💰 Lembrete do saldo</strong><br>
+<span class="small">
+Mostra o total disponível.
+</span>
+</span>
+</div>
+<div class="notification-option">
+<input
+  type="checkbox"
+  id="notifHoje"
+>
+<span>
+<strong>🔴 Contas vencendo hoje</strong><br>
+<span class="small">
+Avisa quando houver contas pendentes para hoje.
+</span>
+</span>
+</div>
+<div class="notification-option">
+<input
+  type="checkbox"
+  id="notifAmanha"
+>
+<span>
+<strong>📅 Contas vencendo amanhã</strong><br>
+<span class="small">
+Avisa sobre contas do dia seguinte.
+</span>
+</span>
+</div>
+<div class="notification-option">
+<input
+  type="checkbox"
+  id="notifReceber"
+>
+<span>
+<strong>💵 Valores a receber</strong><br>
+<span class="small">
+Avisa quando houver dinheiro pendente para receber.
+</span>
+</span>
+</div>
+
+<button
+class=“primary”
+onclick=“salvarNotificacoes()”
+
+💾 Salvar notificações
+<button
+class=“secondary”
+onclick=“testarNotificacao()”
+
+🔔 Testar notificação
+<hr>
+<div class="small">
+<strong>Importante:</strong> nesta etapa o sistema configura e testa as notificações no aplicativo. A parte que fará os avisos funcionarem de forma confiável mesmo com o APK fechado será adicionada posteriormente no Android.
+</div>
+</div>
 </section>
-
 <!-- ASSISTENTE -->
-
 <section id="assistente" class="section">
-
 <div class="card">
-
 <h2 style="margin-bottom:8px;">
 🤖 Assistente
 </h2>
-
 <div class="small" style="margin-bottom:12px;">
 Consulte seus dados usando frases simples.
 </div>
-
 <div id="chatBox" class="chat-box"></div>
-
 <div class="quick-buttons">
-
 <button onclick="perguntaRapida('Quanto tenho a receber?')">
 A receber
 </button>
-
 <button onclick="perguntaRapida('Quanto tenho a pagar?')">
 A pagar
 </button>
-
 <button onclick="perguntaRapida('Qual meu saldo previsto?')">
 Saldo
 </button>
-
 <button onclick="perguntaRapida('Onde estou gastando mais?')">
 Gastos
 </button>
-
 </div>
 
 <input
-id="mensagemIA"
-placeholder="Ex.: quanto tenho previsto para sobrar?"
-onkeydown="if(event.key==='Enter') enviarMensagem()"
->
+id=“mensagemIA”
+placeholder=“Ex.: quanto tenho previsto para sobrar?”
+onkeydown=“if(event.key===‘Enter’) enviarMensagem()”
 
 <button class="primary" onclick="enviarMensagem()">
 Enviar
 </button>
-
 </div>
-
 <div class="card">
-
 <h3>Exemplos</h3>
-
 <div class="small">
 • Quanto tenho a receber?<br><br>
 • Quanto tenho a pagar?<br><br>
@@ -787,76 +799,43 @@ Enviar
 • Onde estou gastando mais?<br><br>
 • Quanto faturei este mês?
 </div>
-
 </div>
-
 </section>
-
 <!-- CONFIGURAÇÕES -->
-
 <section id="config" class="section">
-
 <div class="card">
-
 <h2 style="margin-bottom:15px;">
 ⚙️ Configurações
 </h2>
 
-<label>Salário pessoal mensal</label>
-<input type="number" id="cfgSalario">
-
-<label>Aporte mensal</label>
-<input type="number" id="cfgAporte">
-
-<label>Meta financeira</label>
-<input type="number" id="cfgMeta">
-
-<label>Rendimento estimado mensal (%)</label>
-<input type="number" id="cfgRendimento" step="0.01">
-
+Salário pessoal mensal
+Aporte mensal
+Meta financeira
+Rendimento estimado mensal (%)
 <hr>
-
 <h3>Despesas fixas</h3>
 
-<label>Celular</label>
-<input type="number" id="cfgCelular">
-
-<label>MEI</label>
-<input type="number" id="cfgMei">
-
-<label>Moto + seguro</label>
-<input type="number" id="cfgMoto">
-
-<label>Casa</label>
-<input type="number" id="cfgCasa">
-
-<label>Gasolina média mensal</label>
-<input type="number" id="cfgGasolina">
-
+Celular
+MEI
+Moto + seguro
+Casa
+Gasolina média mensal
 <button class="primary" onclick="salvarConfig()">
 💾 Salvar configurações
 </button>
-
 <button class="danger" onclick="limparDados()">
 🗑️ Apagar todos os dados
 </button>
-
 </div>
-
 </section>
-
 </div>
-
 <footer>
 Melhor Gestão • Controle financeiro inteligente.
 </footer>
-
 <script>
-
 /* =========================
    BANCO DE DADOS
 ========================= */
-
 const configuracaoPadrao = {
   salario:2000,
   aporte:4500,
@@ -868,34 +847,49 @@ const configuracaoPadrao = {
   casa:300,
   gasolina:1500
 };
-
+const notificacaoPadrao = {
+  ativa:false,
+  horario:"09:00",
+  saldo:true,
+  contasHoje:true,
+  contasAmanha:true,
+  receber:true,
+  ultimaExecucao:""
+};
 let banco = JSON.parse(
   localStorage.getItem("meuControle")
 ) || {};
-
 banco.config = {
   ...configuracaoPadrao,
   ...(banco.config || {})
 };
-
 banco.dias = Array.isArray(banco.dias)
   ? banco.dias
   : [];
-
 banco.contas = Array.isArray(banco.contas)
   ? banco.contas
   : [];
-
 banco.recebimentos = Array.isArray(banco.recebimentos)
   ? banco.recebimentos
   : [];
-
 banco.economizado = Number(
   banco.economizado || 0
 );
-
+/* NOVO: SALDO */
+banco.saldo = {
+  conta:Number(
+    banco.saldo?.conta || 0
+  ),
+  maos:Number(
+    banco.saldo?.maos || 0
+  )
+};
+/* NOVO: NOTIFICAÇÕES */
+banco.notificacoes = {
+  ...notificacaoPadrao,
+  ...(banco.notificacoes || {})
+};
 /* Compatibilidade com versão antiga */
-
 banco.dias = banco.dias.map(d => ({
   ...d,
   lanche:Number(d.lanche || 0),
@@ -905,18 +899,15 @@ banco.dias = banco.dias.map(d => ({
       ? d.gastosPersonalizados
       : []
 }));
-
 function salvarBanco(){
   localStorage.setItem(
     "meuControle",
     JSON.stringify(banco)
   );
 }
-
 /* =========================
    UTILIDADES
 ========================= */
-
 function dinheiro(valor){
   return Number(valor || 0).toLocaleString(
     "pt-BR",
@@ -926,32 +917,22 @@ function dinheiro(valor){
     }
   );
 }
-
 function hojeISO(){
-
   const d = new Date();
-
   d.setMinutes(
     d.getMinutes() -
     d.getTimezoneOffset()
   );
-
   return d.toISOString().slice(0,10);
 }
-
 function formatarData(data){
-
   if(!data) return "";
-
   const d = new Date(
     data + "T12:00:00"
   );
-
   return d.toLocaleDateString("pt-BR");
 }
-
 function escapar(texto){
-
   return String(texto || "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
@@ -959,54 +940,97 @@ function escapar(texto){
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
 }
-
 /* =========================
    ABAS
 ========================= */
-
 function showTab(tab,botao){
-
   document
     .querySelectorAll(".section")
     .forEach(s =>
       s.classList.remove("active")
     );
-
   document
     .getElementById(tab)
     .classList.add("active");
-
   document
     .querySelectorAll(".tabs button")
     .forEach(b =>
       b.classList.remove("active")
     );
-
   botao.classList.add("active");
-
   atualizar();
-
   if(tab === "calendario"){
     renderCalendario();
   }
+  if(tab === "notificacoes"){
+    carregarNotificacoes();
+  }
 }
-
+/* =========================
+   SALDO DISPONÍVEL
+========================= */
+function calcularSaldoDisponivel(){
+  const conta =
+    Number(
+      document.getElementById(
+        "saldoConta"
+      ).value || 0
+    );
+  const maos =
+    Number(
+      document.getElementById(
+        "dinheiroMaos"
+      ).value || 0
+    );
+  const total =
+    conta + maos;
+  document.getElementById(
+    "totalDisponivel"
+  ).innerText =
+    dinheiro(total);
+}
+function carregarSaldo(){
+  document.getElementById(
+    "saldoConta"
+  ).value =
+    banco.saldo.conta;
+  document.getElementById(
+    "dinheiroMaos"
+  ).value =
+    banco.saldo.maos;
+  calcularSaldoDisponivel();
+}
+function salvarSaldo(){
+  banco.saldo.conta =
+    Number(
+      document.getElementById(
+        "saldoConta"
+      ).value || 0
+    );
+  banco.saldo.maos =
+    Number(
+      document.getElementById(
+        "dinheiroMaos"
+      ).value || 0
+    );
+  salvarBanco();
+  calcularSaldoDisponivel();
+  alert(
+    "Saldo salvo com sucesso!"
+  );
+  atualizar();
+}
 /* =========================
    GASTOS PERSONALIZADOS
 ========================= */
-
 function adicionarGasto(nome="",valor=""){
-
   const div =
     document.getElementById(
       "gastosPersonalizados"
     );
-
   const linha =
     document.createElement("div");
-
   linha.className = "expense-row";
-
   linha.innerHTML = `
     <input
       type="text"
@@ -1014,7 +1038,6 @@ function adicionarGasto(nome="",valor=""){
       placeholder="Nome do gasto"
       value="${escapar(nome)}"
     >
-
     <input
       type="number"
       class="valor-gasto"
@@ -1023,201 +1046,143 @@ function adicionarGasto(nome="",valor=""){
       value="${valor}"
       oninput="calcularGastosDia()"
     >
-
     <button
       class="remove-btn"
       onclick="this.parentElement.remove();calcularGastosDia();"
     >×</button>
   `;
-
   div.appendChild(linha);
-
   calcularGastosDia();
 }
-
 function obterGastosPersonalizados(){
-
   const nomes =
     document.querySelectorAll(".nome-gasto");
-
   const valores =
     document.querySelectorAll(".valor-gasto");
-
   const lista = [];
-
   nomes.forEach((campo,i)=>{
-
     const nome =
       campo.value.trim();
-
     const valor =
       Number(valores[i]?.value || 0);
-
     if(nome && valor > 0){
-
       lista.push({
         nome,
         valor
       });
-
     }
-
   });
-
   return lista;
 }
-
 function calcularGastosDia(){
-
   const gasolina =
     Number(
       document.getElementById("gasolina").value || 0
     );
-
   const lanche =
     Number(
       document.getElementById("lanche").value || 0
     );
-
   const moto =
     Number(
       document.getElementById("motoDia").value || 0
     );
-
   const personalizados =
     obterGastosPersonalizados();
-
   const outros =
     personalizados.reduce(
       (total,g) => total + g.valor,
       0
     );
-
   const total =
     gasolina +
     lanche +
     moto +
     outros;
-
   const ganho =
     Number(
       document.getElementById("ganho").value || 0
     );
-
   document.getElementById(
     "totalGastosDia"
   ).innerText = dinheiro(total);
-
   document.getElementById(
     "liquidoDia"
   ).innerText = dinheiro(ganho-total);
 }
-
 [
   "ganho",
   "gasolina",
   "lanche",
   "motoDia"
 ].forEach(id => {
-
   document
     .getElementById(id)
     .addEventListener(
       "input",
       calcularGastosDia
     );
-
 });
-
 /* =========================
    TRABALHO
 ========================= */
-
 function salvarDia(){
-
   const data =
     document.getElementById("data").value;
-
   const ganho =
     Number(
       document.getElementById("ganho").value
     );
-
   const gasolina =
     Number(
       document.getElementById("gasolina").value || 0
     );
-
   const km =
     Number(
       document.getElementById("km").value || 0
     );
-
   const lanche =
     Number(
       document.getElementById("lanche").value || 0
     );
-
   const motoDia =
     Number(
       document.getElementById("motoDia").value || 0
     );
-
   const gastosPersonalizados =
     obterGastosPersonalizados();
-
   if(!data || ganho <= 0){
-
     alert(
       "Informe a data e o faturamento."
     );
-
     return;
   }
-
   banco.dias.push({
-
     id:Date.now(),
-
     data,
-
     ganho,
-
     gasolina,
-
     km,
-
     lanche,
-
     motoDia,
-
     gastosPersonalizados
-
   });
-
   salvarBanco();
-
   document.getElementById("ganho").value="";
   document.getElementById("gasolina").value="";
   document.getElementById("km").value="";
   document.getElementById("lanche").value="";
   document.getElementById("motoDia").value="";
-
   document.getElementById(
     "gastosPersonalizados"
   ).innerHTML="";
-
   calcularGastosDia();
-
   alert(
     "Dia registrado com sucesso!"
   );
-
   atualizar();
 }
-
 function totalGastosRegistro(d){
-
   const personalizados =
     Array.isArray(d.gastosPersonalizados)
       ? d.gastosPersonalizados.reduce(
@@ -1226,7 +1191,6 @@ function totalGastosRegistro(d){
           0
         )
       : Number(d.outros || 0);
-
   return (
     Number(d.gasolina || 0) +
     Number(d.lanche || 0) +
@@ -1234,134 +1198,96 @@ function totalGastosRegistro(d){
     personalizados
   );
 }
-
 function nomesGastosRegistro(d){
-
   const lista=[];
-
   if(Number(d.gasolina || 0)>0)
     lista.push(
       `⛽ Gasolina: ${dinheiro(d.gasolina)}`
     );
-
   if(Number(d.lanche || 0)>0)
     lista.push(
       `🍔 Lanche: ${dinheiro(d.lanche)}`
     );
-
   if(Number(d.motoDia || 0)>0)
     lista.push(
       `🏍️ Moto: ${dinheiro(d.motoDia)}`
     );
-
   if(Array.isArray(d.gastosPersonalizados)){
-
     d.gastosPersonalizados.forEach(g=>{
-
       lista.push(
         `${escapar(g.nome)}: ${dinheiro(g.valor)}`
       );
-
     });
-
   }else if(Number(d.outros || 0)>0){
-
     lista.push(
       `Outros: ${dinheiro(d.outros)}`
     );
-
   }
-
   return lista;
 }
-
 function excluirDia(id){
-
   if(!confirm(
     "Excluir este registro?"
   )) return;
-
   banco.dias =
     banco.dias.filter(
       d => d.id !== id
     );
-
   salvarBanco();
-
   atualizar();
 }
-
 function mostrarHistorico(){
-
   const div =
     document.getElementById(
       "historico"
     );
-
   if(banco.dias.length===0){
-
     div.innerHTML =
       '<p class="small">Nenhum dia registrado.</p>';
-
     return;
   }
-
   const ordenados =
     [...banco.dias].sort(
       (a,b)=>
         new Date(b.data) -
         new Date(a.data)
     );
-
   div.innerHTML="";
-
   ordenados.forEach(d=>{
-
     const gastos =
       totalGastosRegistro(d);
-
     const liquido =
       Number(d.ganho || 0) -
       gastos;
-
     const item =
       document.createElement("div");
-
     item.className =
       "history-item";
-
     let detalhes =
       nomesGastosRegistro(d)
       .map(x=>`<div>${x}</div>`)
       .join("");
-
     item.innerHTML = `
-
       <strong>
         ${formatarData(d.data)}
       </strong>
-
       <div>
         Faturamento:
         <span class="green">
           ${dinheiro(d.ganho)}
         </span>
       </div>
-
       ${detalhes}
-
       <div>
         KM:
         ${Number(d.km || 0)} km
       </div>
-
       <div style="margin-top:6px;">
         Líquido:
         <strong class="blue">
           ${dinheiro(liquido)}
         </strong>
       </div>
-
       <button
         class="danger"
         onclick="excluirDia(${d.id})"
@@ -1369,40 +1295,27 @@ function mostrarHistorico(){
         Excluir
       </button>
     `;
-
     div.appendChild(item);
-
   });
-
 }
-
 /* =========================
    PLANEJAMENTO
 ========================= */
-
 let calendarioAtual = new Date();
-
 let dataSelecionada =
   hojeISO();
-
 function mudarMes(direcao){
-
   calendarioAtual.setMonth(
     calendarioAtual.getMonth() +
     direcao
   );
-
   renderCalendario();
 }
-
 function renderCalendario(){
-
   const ano =
     calendarioAtual.getFullYear();
-
   const mes =
     calendarioAtual.getMonth();
-
   const nomeMes =
     new Date(
       ano,
@@ -1415,81 +1328,58 @@ function renderCalendario(){
         year:"numeric"
       }
     );
-
   document.getElementById(
     "tituloCalendario"
   ).innerText = nomeMes;
-
   const grid =
     document.getElementById(
       "calendarioGrid"
     );
-
   grid.innerHTML="";
-
   const primeiroDia =
     new Date(
       ano,
       mes,
       1
     ).getDay();
-
   const inicio =
     (primeiroDia + 6) % 7;
-
   const quantidadeDias =
     new Date(
       ano,
       mes + 1,
       0
     ).getDate();
-
   for(let i=0;i<inicio;i++){
-
     const vazio =
       document.createElement("div");
-
     vazio.className =
       "day empty";
-
     grid.appendChild(vazio);
-
   }
-
   for(let dia=1;dia<=quantidadeDias;dia++){
-
     const data =
       `${ano}-${String(mes+1).padStart(2,"0")}-${String(dia).padStart(2,"0")}`;
-
     const contas =
       banco.contas.filter(
         c => c.data === data
       );
-
     const recebimentos =
       banco.recebimentos.filter(
         r => r.data === data
       );
-
     const div =
       document.createElement("div");
-
     div.className="day";
-
     if(data===hojeISO())
       div.classList.add("today");
-
     if(data===dataSelecionada)
       div.classList.add("selected");
-
     let dots="";
-
     if(contas.length)
       dots += '<span class="dot red"></span>';
-
     if(recebimentos.length)
       dots += '<span class="dot green"></span>';
-
     div.innerHTML=`
       <div class="day-number">
         ${dia}
@@ -1498,195 +1388,135 @@ function renderCalendario(){
         ${dots}
       </div>
     `;
-
     div.onclick=()=>{
-
       dataSelecionada=data;
-
       document.getElementById(
         "dataPlanejamento"
       ).value=data;
-
       renderCalendario();
-
       mostrarEventosData();
-
     };
-
     grid.appendChild(div);
-
   }
-
   mostrarEventosData();
 }
-
 function salvarPlanejamento(){
-
   const tipo =
     document.getElementById(
       "tipoPlanejamento"
     ).value;
-
   const nome =
     document.getElementById(
       "nomePlanejamento"
     ).value.trim();
-
   const valor =
     Number(
       document.getElementById(
         "valorPlanejamento"
       ).value
     );
-
   const data =
     document.getElementById(
       "dataPlanejamento"
     ).value;
-
   const recorrente =
     document.getElementById(
       "recorrente"
     ).checked;
-
   if(!nome || valor<=0 || !data){
-
     alert(
       "Informe nome, valor e data."
     );
-
     return;
   }
-
   const destino =
     tipo==="conta"
       ? banco.contas
       : banco.recebimentos;
-
   const quantidade =
     recorrente ? 12 : 1;
-
   const primeira =
     new Date(
       data + "T12:00:00"
     );
-
   for(let i=0;i<quantidade;i++){
-
     const d =
       new Date(primeira);
-
     d.setMonth(
       primeira.getMonth()+i
     );
-
     const dataFinal =
       `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-
     destino.push({
-
       id:Date.now()+i+Math.random(),
-
       nome,
-
       valor,
-
       data:dataFinal,
-
       status:
         tipo==="conta"
           ? "pendente"
           : "pendente"
-
     });
-
   }
-
   salvarBanco();
-
   document.getElementById(
     "nomePlanejamento"
   ).value="";
-
   document.getElementById(
     "valorPlanejamento"
   ).value="";
-
   document.getElementById(
     "recorrente"
   ).checked=false;
-
   dataSelecionada=data;
-
   atualizar();
-
   renderCalendario();
-
   alert(
     recorrente
       ? "Planejamento criado para 12 meses!"
       : "Planejamento adicionado!"
   );
 }
-
 function mostrarEventosData(){
-
   const div =
     document.getElementById(
       "eventosData"
     );
-
   const titulo =
     document.getElementById(
       "tituloEventosData"
     );
-
   titulo.innerText =
     "Eventos de " +
     formatarData(dataSelecionada);
-
   const contas =
     banco.contas.filter(
       c => c.data===dataSelecionada
     );
-
   const recebimentos =
     banco.recebimentos.filter(
       r => r.data===dataSelecionada
     );
-
   if(!contas.length && !recebimentos.length){
-
     div.innerHTML =
       '<p class="small" style="margin-top:10px;">Nenhum evento nesta data.</p>';
-
     return;
   }
-
   div.innerHTML="";
-
   contas.forEach(c=>{
-
     const item =
       document.createElement("div");
-
     item.className =
       "planning-item bill";
-
     item.innerHTML=`
-
       <strong>🔴 ${escapar(c.nome)}</strong>
-
       <div>${dinheiro(c.valor)}</div>
-
       <div class="small">
         ${c.status==="pago"
           ? "Pago"
           : "Pendente"}
       </div>
-
       <div class="planning-actions">
-
         ${
           c.status!=="pago"
           ? `<button onclick="marcarConta(${c.id})">
@@ -1694,40 +1524,27 @@ function mostrarEventosData(){
              </button>`
           : ""
         }
-
         <button onclick="excluirConta(${c.id})">
           Excluir
         </button>
-
       </div>
     `;
-
     div.appendChild(item);
-
   });
-
   recebimentos.forEach(r=>{
-
     const item =
       document.createElement("div");
-
     item.className =
       "planning-item receive";
-
     item.innerHTML=`
-
       <strong>🟢 ${escapar(r.nome)}</strong>
-
       <div>${dinheiro(r.valor)}</div>
-
       <div class="small">
         ${r.status==="recebido"
           ? "Recebido"
           : "Pendente"}
       </div>
-
       <div class="planning-actions">
-
         ${
           r.status!=="recebido"
           ? `<button onclick="marcarRecebimento(${r.id})">
@@ -1735,144 +1552,104 @@ function mostrarEventosData(){
              </button>`
           : ""
         }
-
         <button onclick="excluirRecebimento(${r.id})">
           Excluir
         </button>
-
       </div>
     `;
-
     div.appendChild(item);
-
   });
-
 }
-
 function marcarConta(id){
-
   const conta =
     banco.contas.find(
       c=>c.id===id
     );
-
   if(!conta) return;
-
   conta.status="pago";
-
   salvarBanco();
-
   atualizar();
-
   renderCalendario();
+  mostrarEventosData();
 }
-
 function marcarRecebimento(id){
-
   const item =
     banco.recebimentos.find(
       r=>r.id===id
     );
-
   if(!item) return;
-
   item.status="recebido";
-
   salvarBanco();
-
   atualizar();
-
+  renderCalendario();
+  mostrarEventosData();
+}
+/* CORREÇÃO DA AGENDA */
+function atualizarAgenda(){
+  mostrarListasPlanejamento();
+  mostrarEventosData();
   renderCalendario();
 }
-
 function excluirConta(id){
-
   if(!confirm(
     "Excluir esta conta?"
   )) return;
-
   banco.contas =
     banco.contas.filter(
       c=>c.id!==id
     );
-
   salvarBanco();
-
   atualizar();
-
-  renderCalendario();
+  atualizarAgenda();
 }
-
 function excluirRecebimento(id){
-
   if(!confirm(
     "Excluir este recebimento?"
   )) return;
-
   banco.recebimentos =
     banco.recebimentos.filter(
       r=>r.id!==id
     );
-
   salvarBanco();
-
   atualizar();
-
-  renderCalendario();
+  atualizarAgenda();
 }
-
 function mostrarListasPlanejamento(){
-
   const contas =
     document.getElementById(
       "listaContas"
     );
-
   const recebimentos =
     document.getElementById(
       "listaRecebimentos"
     );
-
   const ordenar =
     (a,b)=>
       new Date(a.data) -
       new Date(b.data);
-
   const contasOrdenadas =
     [...banco.contas]
       .sort(ordenar);
-
   const recebimentosOrdenados =
     [...banco.recebimentos]
       .sort(ordenar);
-
   contas.innerHTML="";
-
   if(!contasOrdenadas.length){
-
     contas.innerHTML =
       '<p class="small">Nenhuma conta cadastrada.</p>';
-
   }else{
-
     contasOrdenadas.forEach(c=>{
-
       const item =
         document.createElement("div");
-
       item.className =
         "planning-item bill";
-
       item.innerHTML=`
-
         <strong>
           ${escapar(c.nome)}
         </strong>
-
         <div>
           ${dinheiro(c.valor)}
         </div>
-
         <div class="small">
           ${formatarData(c.data)}
           •
@@ -1880,9 +1657,7 @@ function mostrarListasPlanejamento(){
             ? "Pago"
             : "Pendente"}
         </div>
-
         <div class="planning-actions">
-
           ${
             c.status!=="pago"
             ? `<button onclick="marcarConta(${c.id})">
@@ -1890,47 +1665,31 @@ function mostrarListasPlanejamento(){
                </button>`
             : ""
           }
-
           <button onclick="excluirConta(${c.id})">
             Excluir
           </button>
-
         </div>
       `;
-
       contas.appendChild(item);
-
     });
-
   }
-
   recebimentos.innerHTML="";
-
   if(!recebimentosOrdenados.length){
-
     recebimentos.innerHTML =
       '<p class="small">Nenhum recebimento cadastrado.</p>';
-
   }else{
-
     recebimentosOrdenados.forEach(r=>{
-
       const item =
         document.createElement("div");
-
       item.className =
         "planning-item receive";
-
       item.innerHTML=`
-
         <strong>
           ${escapar(r.nome)}
         </strong>
-
         <div>
           ${dinheiro(r.valor)}
         </div>
-
         <div class="small">
           ${formatarData(r.data)}
           •
@@ -1938,9 +1697,7 @@ function mostrarListasPlanejamento(){
             ? "Recebido"
             : "Pendente"}
         </div>
-
         <div class="planning-actions">
-
           ${
             r.status!=="recebido"
             ? `<button onclick="marcarRecebimento(${r.id})">
@@ -1948,215 +1705,456 @@ function mostrarListasPlanejamento(){
                </button>`
             : ""
           }
-
           <button onclick="excluirRecebimento(${r.id})">
             Excluir
           </button>
-
         </div>
       `;
-
       recebimentos.appendChild(item);
-
     });
-
   }
-
 }
-
+/* =========================
+   NOTIFICAÇÕES
+========================= */
+function carregarNotificacoes(){
+  const n =
+    banco.notificacoes;
+  document.getElementById(
+    "notifAtiva"
+  ).checked =
+    n.ativa;
+  document.getElementById(
+    "notifHorario"
+  ).value =
+    n.horario || "09:00";
+  document.getElementById(
+    "notifSaldo"
+  ).checked =
+    n.saldo;
+  document.getElementById(
+    "notifHoje"
+  ).checked =
+    n.contasHoje;
+  document.getElementById(
+    "notifAmanha"
+  ).checked =
+    n.contasAmanha;
+  document.getElementById(
+    "notifReceber"
+  ).checked =
+    n.receber;
+  atualizarStatusNotificacoes();
+}
+function atualizarStatusNotificacoes(){
+  const status =
+    document.getElementById(
+      "statusNotificacoes"
+    );
+  if(!banco.notificacoes.ativa){
+    status.className =
+      "notification-status notification-off";
+    status.innerText =
+      "🔕 Notificações desativadas.";
+    return;
+  }
+  status.className =
+    "notification-status";
+  status.innerText =
+    "🔔 Notificações ativas. Horário: " +
+    (banco.notificacoes.horario || "09:00");
+}
+async function solicitarPermissaoNotificacao(){
+  if(
+    !("Notification" in window)
+  ){
+    return false;
+  }
+  if(
+    Notification.permission === "granted"
+  ){
+    return true;
+  }
+  if(
+    Notification.permission === "denied"
+  ){
+    return false;
+  }
+  const permissao =
+    await Notification.requestPermission();
+  return permissao === "granted";
+}
+async function salvarNotificacoes(){
+  banco.notificacoes.ativa =
+    document.getElementById(
+      "notifAtiva"
+    ).checked;
+  banco.notificacoes.horario =
+    document.getElementById(
+      "notifHorario"
+    ).value || "09:00";
+  banco.notificacoes.saldo =
+    document.getElementById(
+      "notifSaldo"
+    ).checked;
+  banco.notificacoes.contasHoje =
+    document.getElementById(
+      "notifHoje"
+    ).checked;
+  banco.notificacoes.contasAmanha =
+    document.getElementById(
+      "notifAmanha"
+    ).checked;
+  banco.notificacoes.receber =
+    document.getElementById(
+      "notifReceber"
+    ).checked;
+  salvarBanco();
+  atualizarStatusNotificacoes();
+  if(banco.notificacoes.ativa){
+    const permitido =
+      await solicitarPermissaoNotificacao();
+    if(!permitido){
+      alert(
+        "As notificações foram configuradas, mas a permissão de notificações não foi concedida."
+      );
+      return;
+    }
+  }
+  alert(
+    banco.notificacoes.ativa
+      ? "Notificações ativadas!"
+      : "Notificações desativadas."
+  );
+  verificarNotificacoes();
+}
+async function enviarNotificacao(titulo,mensagem){
+  if(
+    !("Notification" in window)
+  ) return;
+  if(
+    Notification.permission !== "granted"
+  ) return;
+  try{
+    new Notification(
+      titulo,
+      {
+        body:mensagem,
+        icon:""
+      }
+    );
+  }catch(e){
+    console.log(
+      "Notificação indisponível:",
+      e
+    );
+  }
+}
+function dataAmanha(){
+  const d =
+    new Date();
+  d.setDate(
+    d.getDate()+1
+  );
+  d.setMinutes(
+    d.getMinutes() -
+    d.getTimezoneOffset()
+  );
+  return d.toISOString().slice(0,10);
+}
+function obterResumoNotificacoes(){
+  const hoje =
+    hojeISO();
+  const amanha =
+    dataAmanha();
+  const contasHoje =
+    banco.contas.filter(c=>
+      c.status!=="pago" &&
+      c.data===hoje
+    );
+  const contasAmanha =
+    banco.contas.filter(c=>
+      c.status!=="pago" &&
+      c.data===amanha
+    );
+  const recebimentos =
+    banco.recebimentos.filter(r=>
+      r.status!=="recebido"
+    );
+  const totalHoje =
+    contasHoje.reduce(
+      (s,c)=>
+        s+Number(c.valor||0),
+      0
+    );
+  const totalAmanha =
+    contasAmanha.reduce(
+      (s,c)=>
+        s+Number(c.valor||0),
+      0
+    );
+  const totalReceber =
+    recebimentos.reduce(
+      (s,r)=>
+        s+Number(r.valor||0),
+      0
+    );
+  const totalSaldo =
+    Number(banco.saldo.conta||0) +
+    Number(banco.saldo.maos||0);
+  return {
+    contasHoje,
+    contasAmanha,
+    recebimentos,
+    totalHoje,
+    totalAmanha,
+    totalReceber,
+    totalSaldo
+  };
+}
+function horarioAtualAtingiuConfigurado(){
+  const configurado =
+    banco.notificacoes.horario || "09:00";
+  const agora =
+    new Date();
+  const atual =
+    `${String(agora.getHours()).padStart(2,"0")}:${String(agora.getMinutes()).padStart(2,"0")}`;
+  return atual >= configurado;
+}
+async function verificarNotificacoes(){
+  if(!banco.notificacoes.ativa)
+    return;
+  if(!horarioAtualAtingiuConfigurado())
+    return;
+  const hoje =
+    hojeISO();
+  if(
+    banco.notificacoes.ultimaExecucao === hoje
+  ){
+    return;
+  }
+  if(
+    !("Notification" in window) ||
+    Notification.permission !== "granted"
+  ){
+    return;
+  }
+  const resumo =
+    obterResumoNotificacoes();
+  if(
+    banco.notificacoes.saldo
+  ){
+    await enviarNotificacao(
+      "💰 Saldo disponível",
+      "Você tem " +
+      dinheiro(resumo.totalSaldo) +
+      " disponível."
+    );
+  }
+  if(
+    banco.notificacoes.contasHoje &&
+    resumo.contasHoje.length
+  ){
+    await enviarNotificacao(
+      "🔴 Contas vencendo hoje",
+      "Você tem " +
+      resumo.contasHoje.length +
+      " conta(s), totalizando " +
+      dinheiro(resumo.totalHoje) +
+      " para pagar hoje."
+    );
+  }
+  if(
+    banco.notificacoes.contasAmanha &&
+    resumo.contasAmanha.length
+  ){
+    await enviarNotificacao(
+      "📅 Contas de amanhã",
+      "Amanhã vencem " +
+      resumo.contasAmanha.length +
+      " conta(s), totalizando " +
+      dinheiro(resumo.totalAmanha) +
+      "."
+    );
+  }
+  if(
+    banco.notificacoes.receber &&
+    resumo.recebimentos.length
+  ){
+    await enviarNotificacao(
+      "💵 Valores a receber",
+      "Você tem " +
+      dinheiro(resumo.totalReceber) +
+      " em valores pendentes para receber."
+    );
+  }
+  banco.notificacoes.ultimaExecucao =
+    hoje;
+  salvarBanco();
+}
+async function testarNotificacao(){
+  const permitido =
+    await solicitarPermissaoNotificacao();
+  if(!permitido){
+    alert(
+      "Permita as notificações no aparelho para fazer o teste."
+    );
+    return;
+  }
+  await enviarNotificacao(
+    "🔔 Melhor Gestão",
+    "Esta é uma notificação de teste."
+  );
+  alert(
+    "Notificação de teste enviada!"
+  );
+}
 /* =========================
    CONFIGURAÇÕES
 ========================= */
-
 function salvarConfig(){
-
   banco.config.salario =
     Number(
       document.getElementById(
         "cfgSalario"
       ).value
     );
-
   banco.config.aporte =
     Number(
       document.getElementById(
         "cfgAporte"
       ).value
     );
-
   banco.config.meta =
     Number(
       document.getElementById(
         "cfgMeta"
       ).value
     );
-
   banco.config.rendimento =
     Number(
       document.getElementById(
         "cfgRendimento"
       ).value
     );
-
   banco.config.celular =
     Number(
       document.getElementById(
         "cfgCelular"
       ).value
     );
-
   banco.config.mei =
     Number(
       document.getElementById(
         "cfgMei"
       ).value
     );
-
   banco.config.moto =
     Number(
       document.getElementById(
         "cfgMoto"
       ).value
     );
-
   banco.config.casa =
     Number(
       document.getElementById(
         "cfgCasa"
       ).value
     );
-
   banco.config.gasolina =
     Number(
       document.getElementById(
         "cfgGasolina"
       ).value
     );
-
   salvarBanco();
-
   alert(
     "Configurações salvas!"
   );
-
   atualizar();
 }
-
 function carregarConfig(){
-
   const c =
     banco.config;
-
   document.getElementById(
     "cfgSalario"
   ).value=c.salario;
-
   document.getElementById(
     "cfgAporte"
   ).value=c.aporte;
-
   document.getElementById(
     "cfgMeta"
   ).value=c.meta;
-
   document.getElementById(
     "cfgRendimento"
   ).value=c.rendimento;
-
   document.getElementById(
     "cfgCelular"
   ).value=c.celular;
-
   document.getElementById(
     "cfgMei"
   ).value=c.mei;
-
   document.getElementById(
     "cfgMoto"
   ).value=c.moto;
-
   document.getElementById(
     "cfgCasa"
   ).value=c.casa;
-
   document.getElementById(
     "cfgGasolina"
   ).value=c.gasolina;
 }
-
 /* =========================
    DASHBOARD
 ========================= */
-
 function atualizar(){
-
   const agora =
     new Date();
-
   const mesAtual =
     agora.getMonth();
-
   const anoAtual =
     agora.getFullYear();
-
   const diasMes =
     banco.dias.filter(d=>{
-
       const data =
         new Date(
           d.data+"T12:00:00"
         );
-
       return (
         data.getMonth()===mesAtual &&
         data.getFullYear()===anoAtual
       );
-
     });
-
   let faturamento=0;
   let gastosVariaveis=0;
-
   diasMes.forEach(d=>{
-
     faturamento +=
       Number(d.ganho || 0);
-
     gastosVariaveis +=
       totalGastosRegistro(d);
-
   });
-
   const contasMes =
     banco.contas.filter(c=>{
-
       const d =
         new Date(
           c.data+"T12:00:00"
         );
-
       return (
         d.getMonth()===mesAtual &&
         d.getFullYear()===anoAtual
       );
-
     });
-
   const recebimentosMes =
     banco.recebimentos.filter(r=>{
-
       const d =
         new Date(
           r.data+"T12:00:00"
         );
-
       return (
         d.getMonth()===mesAtual &&
         d.getFullYear()===anoAtual
       );
-
     });
-
   const aPagar =
     contasMes
       .filter(c=>c.status!=="pago")
@@ -2165,7 +2163,6 @@ function atualizar(){
           total+Number(c.valor||0),
         0
       );
-
   const aReceber =
     recebimentosMes
       .filter(r=>r.status!=="recebido")
@@ -2174,128 +2171,98 @@ function atualizar(){
           total+Number(r.valor||0),
         0
       );
-
   const c =
     banco.config;
-
   const despesasFixas =
     Number(c.celular||0)+
     Number(c.mei||0)+
     Number(c.moto||0)+
     Number(c.casa||0)+
     Number(c.gasolina||0);
-
   const despesas =
     gastosVariaveis +
     despesasFixas;
-
   const livre =
     faturamento -
     despesas;
-
   const saldoPrevisto =
     faturamento -
     gastosVariaveis +
     aReceber -
     aPagar;
-
   document.getElementById(
     "faturamento"
   ).innerText =
     dinheiro(faturamento);
-
   document.getElementById(
     "despesas"
   ).innerText =
     dinheiro(gastosVariaveis);
-
   document.getElementById(
     "aReceber"
   ).innerText =
     dinheiro(aReceber);
-
   document.getElementById(
     "aPagar"
   ).innerText =
     dinheiro(aPagar);
-
   document.getElementById(
     "saldoPrevisto"
   ).innerText =
     dinheiro(saldoPrevisto);
-
   document.getElementById(
     "livre"
   ).innerText =
     dinheiro(livre);
-
   document.getElementById(
     "metaTexto"
   ).innerText =
     dinheiro(c.meta);
-
   document.getElementById(
     "aporteTexto"
   ).innerText =
     dinheiro(c.aporte);
-
   document.getElementById(
     "salarioTexto"
   ).innerText =
     dinheiro(c.salario);
-
+  calcularSaldoDisponivel();
   const progresso =
     banco.economizado;
-
   let percentual =
     c.meta>0
       ? (progresso/c.meta)*100
       : 0;
-
   percentual =
     Math.min(percentual,100);
-
   document.getElementById(
     "barraMeta"
   ).style.width =
     percentual+"%";
-
   document.getElementById(
     "progressoMeta"
   ).innerText =
     dinheiro(progresso);
-
   document.getElementById(
     "percentualMeta"
   ).innerText =
     percentual.toFixed(1)+"%";
-
   calcularProjecao();
-
   mostrarHistorico();
-
   mostrarListasPlanejamento();
-
   mostrarResumoAgenda();
-
 }
-
 /* =========================
    RESUMO DA AGENDA
 ========================= */
-
 function mostrarResumoAgenda(){
-
   const div =
     document.getElementById(
       "resumoAgenda"
     );
-
   const hoje =
     hojeISO();
-
   const eventos=[
-
     ...banco.contas
       .filter(c=>
         c.status!=="pago" &&
@@ -2305,7 +2272,6 @@ function mostrarResumoAgenda(){
         ...c,
         tipo:"conta"
       })),
-
     ...banco.recebimentos
       .filter(r=>
         r.status!=="recebido" &&
@@ -2315,95 +2281,66 @@ function mostrarResumoAgenda(){
         ...r,
         tipo:"receber"
       }))
-
   ].sort(
     (a,b)=>
       new Date(a.data) -
       new Date(b.data)
   ).slice(0,5);
-
   if(!eventos.length){
-
     div.innerHTML =
       '<p class="small">Nenhum compromisso próximo.</p>';
-
     return;
   }
-
   div.innerHTML =
     eventos.map(e=>`
-
       <div class="planning-item ${e.tipo==="conta"?"bill":"receive"}">
-
         <strong>
           ${e.tipo==="conta"?"🔴":"🟢"}
           ${escapar(e.nome)}
         </strong>
-
         <div>
           ${dinheiro(e.valor)}
         </div>
-
         <div class="small">
           ${formatarData(e.data)}
         </div>
-
       </div>
-
     `).join("");
-
 }
-
 /* =========================
    PROJEÇÃO
 ========================= */
-
 function calcularProjecao(){
-
   const aporte =
     banco.config.aporte;
-
   const taxa =
     banco.config.rendimento/100;
-
   if(aporte<=0){
-
     document.getElementById(
       "projecao"
     ).innerText =
       "Configure o aporte.";
-
     return;
   }
-
   let patrimonio =
     banco.economizado;
-
   let meses=0;
-
   while(
     patrimonio<1000000 &&
     meses<1000
   ){
-
     patrimonio =
       patrimonio*(1+taxa)+aporte;
-
     meses++;
-
   }
-
   const anos =
     Math.floor(meses/12);
-
   const mesesRestantes =
     meses%12;
-
   document.getElementById(
     "projecao"
   ).innerText =
     meses+" meses";
-
   document.getElementById(
     "projecaoDetalhe"
   ).innerText =
@@ -2412,124 +2349,89 @@ function calcularProjecao(){
     " anos e "+
     mesesRestantes+
     " meses para atingir R$ 1 milhão.";
-
 }
-
 /* =========================
    ASSISTENTE
 ========================= */
-
 function adicionarMensagem(texto,tipo){
-
   const box =
     document.getElementById(
       "chatBox"
     );
-
   const div =
     document.createElement("div");
-
   div.className =
     "chat-message "+
     (tipo==="user"
       ? "chat-user"
       : "chat-bot");
-
   div.innerHTML =
     escapar(texto)
       .replace(/\n/g,"<br>");
-
   box.appendChild(div);
-
   box.scrollTop =
     box.scrollHeight;
 }
-
 function perguntaRapida(texto){
-
   document.getElementById(
     "mensagemIA"
   ).value=texto;
-
   enviarMensagem();
 }
-
 function enviarMensagem(){
-
   const campo =
     document.getElementById(
       "mensagemIA"
     );
-
   const texto =
     campo.value.trim();
-
   if(!texto) return;
-
   adicionarMensagem(
     texto,
     "user"
   );
-
   campo.value="";
-
   const resposta =
     interpretarAssistente(texto);
-
   setTimeout(()=>{
-
     adicionarMensagem(
       resposta,
       "bot"
     );
-
   },200);
-
 }
-
 function interpretarAssistente(texto){
-
   const t =
     texto.toLowerCase();
-
   const agora =
     new Date();
-
   const mes =
     agora.getMonth();
-
   const ano =
     agora.getFullYear();
-
   const dias =
     banco.dias.filter(d=>{
-
       const data =
         new Date(
           d.data+"T12:00:00"
         );
-
       return (
         data.getMonth()===mes &&
         data.getFullYear()===ano
       );
-
     });
-
   const faturamento =
     dias.reduce(
       (s,d)=>
         s+Number(d.ganho||0),
       0
     );
-
   const gastos =
     dias.reduce(
       (s,d)=>
         s+totalGastosRegistro(d),
       0
     );
-
   const receber =
     banco.recebimentos
       .filter(
@@ -2540,7 +2442,6 @@ function interpretarAssistente(texto){
           s+Number(r.valor||0),
         0
       );
-
   const pagar =
     banco.contas
       .filter(
@@ -2551,110 +2452,85 @@ function interpretarAssistente(texto){
           s+Number(c.valor||0),
         0
       );
-
   const saldo =
     faturamento -
     gastos +
     receber -
     pagar;
-
   if(
     t.includes("a receber") ||
     t.includes("vou receber") ||
     t.includes("receber")
   ){
-
     return (
       "Você tem "+
       dinheiro(receber)+
       " a receber em lançamentos pendentes."
     );
-
   }
-
   if(
     t.includes("a pagar") ||
     t.includes("vou pagar") ||
     t.includes("contas")
   ){
-
     return (
       "Você tem "+
       dinheiro(pagar)+
       " em contas pendentes."
     );
-
   }
-
   if(
     t.includes("saldo") ||
     t.includes("previsto")
   ){
-
     return (
       "Seu saldo previsto pelos lançamentos é "+
       dinheiro(saldo)+
       "."
     );
-
   }
-
   if(
     t.includes("faturei") ||
     t.includes("faturamento")
   ){
-
     return (
       "Neste mês você registrou "+
       dinheiro(faturamento)+
       " de faturamento."
     );
-
   }
-
   if(
     t.includes("gasto") ||
     t.includes("gastando")
   ){
-
     const categorias={
       "Gasolina":0,
       "Lanche":0,
       "Moto":0,
       "Outros":0
     };
-
     dias.forEach(d=>{
-
       categorias.Gasolina +=
         Number(d.gasolina||0);
-
       categorias.Lanche +=
         Number(d.lanche||0);
-
       categorias.Moto +=
         Number(d.motoDia||0);
-
       if(
         Array.isArray(
           d.gastosPersonalizados
         )
       ){
-
         d.gastosPersonalizados
           .forEach(g=>{
             categorias.Outros +=
               Number(g.valor||0);
           });
-
       }
-
     });
-
     const maior =
       Object.entries(categorias)
         .sort((a,b)=>b[1]-a[1])[0];
-
     return (
       "Neste mês, sua maior categoria registrada é "+
       maior[0]+
@@ -2662,9 +2538,7 @@ function interpretarAssistente(texto){
       dinheiro(maior[1])+
       "."
     );
-
   }
-
   return (
     "Posso consultar seus dados. Tente perguntar, por exemplo:\n\n"+
     "• Quanto tenho a receber?\n"+
@@ -2673,57 +2547,50 @@ function interpretarAssistente(texto){
     "• Quanto faturei este mês?\n"+
     "• Onde estou gastando mais?"
   );
-
 }
-
 /* =========================
    LIMPAR DADOS
 ========================= */
-
 function limparDados(){
-
   const certeza =
     confirm(
       "ATENÇÃO: isso apagará todos os registros. Continuar?"
     );
-
   if(!certeza) return;
-
   localStorage.removeItem(
     "meuControle"
   );
-
   location.reload();
 }
-
 /* =========================
    INICIALIZAÇÃO
 ========================= */
-
 document.getElementById(
   "data"
 ).value=hojeISO();
-
 document.getElementById(
   "dataPlanejamento"
 ).value=hojeISO();
-
 dataSelecionada=hojeISO();
-
 carregarConfig();
-
+carregarSaldo();
+carregarNotificacoes();
 atualizar();
-
 renderCalendario();
-
 calcularGastosDia();
-
 adicionarMensagem(
   "Olá! Sou o assistente do Melhor Gestão. Posso consultar seu faturamento, gastos, contas, recebimentos e saldo previsto.",
   "bot"
 );
-
+/*
+  Verifica notificações enquanto
+  o aplicativo/página estiver aberto.
+*/
+verificarNotificacoes();
+setInterval(
+  verificarNotificacoes,
+  60000
+);
 </script>
-
 </body>
 </html>
