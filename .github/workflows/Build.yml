@@ -30,9 +30,7 @@ jobs:
           mkdir -p app/src/main/assets
           mkdir -p app/src/main/res/values
           cp index.html app/src/main/assets/index.html
-          # --------------------------------
           # SETTINGS
-          # --------------------------------
           cat > settings.gradle <<'EOF'
           pluginManagement {
               repositories {
@@ -51,17 +49,13 @@ jobs:
           rootProject.name = "MelhorGestao"
           include(":app")
           EOF
-          # --------------------------------
           # BUILD PRINCIPAL
-          # --------------------------------
           cat > build.gradle <<'EOF'
           plugins {
               id 'com.android.application' version '8.7.3' apply false
           }
           EOF
-          # --------------------------------
           # BUILD DO APP
-          # --------------------------------
           cat > app/build.gradle <<'EOF'
           plugins {
               id 'com.android.application'
@@ -77,10 +71,11 @@ jobs:
                   versionName '1.0'
               }
           }
+          dependencies {
+              implementation 'androidx.core:core:1.15.0'
+          }
           EOF
-          # --------------------------------
           # ESTILO
-          # --------------------------------
           cat > app/src/main/res/values/styles.xml <<'EOF'
           <resources>
               <style
@@ -100,9 +95,7 @@ jobs:
               </style>
           </resources>
           EOF
-          # --------------------------------
           # ANDROID MANIFEST
-          # --------------------------------
           cat > app/src/main/AndroidManifest.xml <<'EOF'
           <manifest
               xmlns:android="http://schemas.android.com/apk/res/android">
@@ -141,9 +134,7 @@ jobs:
               </application>
           </manifest>
           EOF
-          # --------------------------------
           # MAIN ACTIVITY
-          # --------------------------------
           cat > app/src/main/java/com/melhorgestao/app/MainActivity.java <<'EOF'
           package com.melhorgestao.app;
           import android.Manifest;
@@ -223,7 +214,10 @@ jobs:
                           Context.ALARM_SERVICE
                       );
                   Intent intent =
-                      new Intent(this, NotificationReceiver.class);
+                      new Intent(
+                          this,
+                          NotificationReceiver.class
+                      );
                   PendingIntent pendingIntent =
                       PendingIntent.getBroadcast(
                           this,
@@ -316,9 +310,7 @@ jobs:
               }
           }
           EOF
-          # --------------------------------
           # RECEIVER DAS NOTIFICAÇÕES
-          # --------------------------------
           cat > app/src/main/java/com/melhorgestao/app/NotificationReceiver.java <<'EOF'
           package com.melhorgestao.app;
           import android.Manifest;
@@ -485,9 +477,7 @@ jobs:
               }
           }
           EOF
-          # --------------------------------
-          # RECEIVER APÓS REINICIAR CELULAR
-          # --------------------------------
+          # RECEIVER APÓS REINICIAR O CELULAR
           cat > app/src/main/java/com/melhorgestao/app/BootReceiver.java <<'EOF'
           package com.melhorgestao.app;
           import android.app.AlarmManager;
@@ -495,77 +485,4 @@ jobs:
           import android.content.BroadcastReceiver;
           import android.content.Context;
           import android.content.Intent;
-          import java.util.Calendar;
-          public class BootReceiver extends BroadcastReceiver {
-              @Override
-              public void onReceive(
-                  Context context,
-                  Intent intent
-              ) {
-                  if (Intent.ACTION_BOOT_COMPLETED.equals(
-                      intent.getAction()
-                  )) {
-                      AlarmManager alarmManager =
-                          (AlarmManager)
-                          context.getSystemService(
-                              Context.ALARM_SERVICE
-                          );
-                      Intent notificationIntent =
-                          new Intent(
-                              context,
-                              NotificationReceiver.class
-                          );
-                      PendingIntent pendingIntent =
-                          PendingIntent.getBroadcast(
-                              context,
-                              100,
-                              notificationIntent,
-                              PendingIntent.FLAG_UPDATE_CURRENT |
-                              PendingIntent.FLAG_IMMUTABLE
-                          );
-                      Calendar calendario =
-                          Calendar.getInstance();
-                      calendario.set(
-                          Calendar.HOUR_OF_DAY,
-                          20
-                      );
-                      calendario.set(
-                          Calendar.MINUTE,
-                          0
-                      );
-                      calendario.set(
-                          Calendar.SECOND,
-                          0
-                      );
-                      if (calendario.getTimeInMillis() <=
-                          System.currentTimeMillis()) {
-                          calendario.add(
-                              Calendar.DAY_OF_YEAR,
-                              1
-                          );
-                      }
-                      if (alarmManager != null) {
-                          alarmManager.setInexactRepeating(
-                              AlarmManager.RTC_WAKEUP,
-                              calendario.getTimeInMillis(),
-                              AlarmManager.INTERVAL_DAY,
-                              pendingIntent
-                          );
-                      }
-                  }
-              }
-          }
-          EOF
-      # --------------------------------
-      # GERAR APK
-      # --------------------------------
-      - name: Gerar APK
-        run: gradle assembleDebug
-      # --------------------------------
-      # DISPONIBILIZAR APK
-      # --------------------------------
-      - name: Disponibilizar APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: Melhor-Gestao-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          import java.util.Ca
